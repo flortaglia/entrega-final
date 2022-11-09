@@ -1,5 +1,7 @@
 const LocalStrategy   = require('passport-local').Strategy;
-const User = require ('../models/usuario.model.js');
+// const User = require ('../models/usuario.model.js');
+const UsuarioDaoFactory = require ('../classes/usuario/UsuarioDaoFactory.class.js');
+const DAO = UsuarioDaoFactory.getDao()
 const bCrypt  =require( 'bcrypt');
 
 // Estrategia de registro/suscripción....REGISTER
@@ -12,7 +14,8 @@ module.exports = function (passport){
             try {
                 // find a user in Mongo with provided username
                 // llamar a UserDao. getByUsername
-                const existingUser = await User.findOne({ 'username' :  username } )
+                const existingUser = await DAO.getByUsername(username)
+                //User.findOne({ 'username' :  username } )
                 if (existingUser) {
                     return done("User already exists", false);
                 }
@@ -26,7 +29,8 @@ module.exports = function (passport){
                     phone: req.body.phone,
                     avatar: req.file.originalname                    
                 };
-                const createdUser = await User.create(newUser);
+                const createdUser = await DAO.create(newUser)
+                //User.create(newUser);
                 return done(null, createdUser);
             } catch (err) {
                 console.log(err);

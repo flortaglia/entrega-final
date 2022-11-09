@@ -57,9 +57,9 @@ class UsuarioDaoMongo extends DAO {
         }          
     }
 
-    async update(id, username, nombre, apellido, direccion, telefono, avatar){
+    async update(id, username, name,surname, address, phone, avatar){
         try {
-            await this.collection.updateOne({_id:id}, {username, nombre, apellido, direccion, telefono, avatar})   
+            await this.collection.updateOne({_id:id}, {username, name,surname, address, phone, avatar})   
             const usuario = await this.getById(id)  
             return new UsuarioDTO(usuario)
         } catch (error) {

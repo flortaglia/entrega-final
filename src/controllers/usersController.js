@@ -22,8 +22,8 @@ const getLogin =(req, res)=>{
 }
 
 const getUserInfo = (req, res)=>{ 
-    const {username, name, address, age, phone, avatar} = req.user
-    res.render('info',{username, name, address, age, phone, avatar})
+    const {username, name,surname, address, phone, avatar} = req.user
+    res.render('info',{username, name,surname, address,phone, avatar})
     
 }
 const postLogin =(req, res)=>{
@@ -41,13 +41,13 @@ const getSignup =(req, res)=>{
 const postSignup =  (req, res)=>{
     // console.log('req- metodo post-login',req.body)
     let user= req.user
-    main(`Nuevo Registro de ${req.user.name} - ${req.user.username}`, 
+    main(`Nuevo Registro de ${req.user.name}${req.user.surname} - ${req.user.username}`, 
     `<h1>Datos de Registro</h1>
     <ul>
         <li>E-mail: ${req.user.username} </li>
         <li>Nombre: ${req.user.name} </li>
+        <li>Apellido: ${req.user.surname} </li>
         <li>Dirección: ${req.user.address} </li>
-        <li>Edad: ${req.user.age} </li>
        <li>Teléfono: ${req.user.phone} </li>
        <li>avatar: http://localhost:8080/image/${req.user.avatar}  </li>
    </ul>`)
