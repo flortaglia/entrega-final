@@ -49,7 +49,7 @@ class UsuarioDaoMongo extends DAO {
             throw new CustomError(500, error);
         }
     }
-    async create(newUser){ //////////////////es necesario un return de usuario, podría ser mensaje de OK???????
+    async create(newUser){ 
         try {
             // username, password, nombre, direccion, edad, telefono,avatar
             const usuario = new this.collection(newUser)

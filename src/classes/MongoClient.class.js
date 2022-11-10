@@ -3,6 +3,8 @@ const dbConfig = require('../config.js');
 const CustomError = require ("./CustomError.class.js") ;
 const DBClient = require("./DBClient.class.js");
 
+let instance
+
 class MongoClient extends DBClient {
   constructor() {
     super();
@@ -27,6 +29,14 @@ class MongoClient extends DBClient {
     } catch (err) {
       throw new CustomError(500, err);
     }
+  }
+
+  static getInstance() {
+    if (!instance) {
+      instance = new MongoClient();
+      instance.connect()
+    }
+    return instance;
   }
 }
 

@@ -18,7 +18,7 @@ class UsuarioControllerRest{
             const usuario = await DAO.create(req.body )
             res.status(201).json(usuario)
         } catch (error) {
-            console.log('error productcontroller',error)
+            console.log('error postUsuarios',error)
             res.status(error.errorCode).send(error.message); 
         }
     }

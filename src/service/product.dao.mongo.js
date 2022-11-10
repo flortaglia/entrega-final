@@ -4,13 +4,14 @@ const DAO = require ("../classes/Dao.class.js") ;
 const MongoClient = require ("../classes/MongoClient.class")
 const Productos = require ("../models/producto.model.js")
 
+let instance
 
 class ProductoDaoMongo extends DAO {
 
   constructor() {
     super();
     this.collection = Productos;
-    this.db = new MongoClient();
+    this.db = MongoClient.getInstance();
   }
 
   async deleteById(id){
@@ -20,9 +21,12 @@ class ProductoDaoMongo extends DAO {
       throw new CustomError(500, error);
     }      
   }
-  async getByCategory(category) {
+  async getByCategory(categoryt) {
     try {
-      const productosCategory = await this.collection.find({ category: category});
+      const productosCategory = await this.collection.find({ category: categoryt});
+      console.log('productosCategory',productosCategory)
+      console.log('productosCategory',productosCategory)
+
       const result = productosCategory.map((producto)=>(new ProductoDTO(producto)))
       // console.log('product.dao.mogo getAll', result)
       return result;
@@ -51,12 +55,14 @@ class ProductoDaoMongo extends DAO {
   }
 
   async create(messageproducto){
-    try {
+    try { 
+      console.log('messageproducto', messageproducto)
       const producto = new this.collection(messageproducto)
       await producto.save() 
       return new ProductoDTO(producto)
     } catch (error) {
       throw new CustomError(500, error);
+      
     }            
   }
 
@@ -71,7 +77,6 @@ class ProductoDaoMongo extends DAO {
   }
   
   static getInstance() {
-    let instance
     if (!instance) instance = new ProductoDaoMongo();
     return instance;
   }

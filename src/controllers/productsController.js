@@ -16,6 +16,7 @@ class ProductoController{
             const category = req.params.category
             console.log('category', category)
             const verProductosCategory = await DAO.getByCategory(category)
+            console.log('verProductosCategory', verProductosCategory)
             // res.render('productos.hbs',{verProductos})
             if(!verProductosCategory){return res.status(404).json({error: "Categoria de producto no encontrada"})}
             res.status(200).json(verProductosCategory)
@@ -30,7 +31,7 @@ class ProductoController{
             const elemento = await DAO.create(req.body )
             res.status(201).json(elemento)
         } catch (error) {
-            console.log('error productcontroller',error)
+            console.log('error postProductos',error)
             res.status(error.errorCode).send(error.message); 
         }
     

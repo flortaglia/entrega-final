@@ -14,8 +14,8 @@ const usuarioRouter = new RouterUsuario()
 const RouterUsuarioRest = require( "./routes/usuario.rest.route.js");
 const usuarioRouterRest = new RouterUsuarioRest()
 
-const rutas = require( "./routes/api.js");
-
+const RouterCarrito = require( "./routes/carrito.route.js");
+const carritoRouter = new RouterCarrito()
 const RouterProducto = require ("./routes/producto.route.js")
 const productoRouter = new RouterProducto()
 
@@ -65,7 +65,7 @@ if (args.modo =="cluster" && cluster.isPrimary) {
 
   console.log("MODO FORK")
   app.use("/", usuarioRouter.start());
-  app.use('/api', rutas);
+  app.use('/api', carritoRouter.start());
   app.use('/api/productos',productoRouter.start())///
   app.use("/users", usuarioRouterRest.start());
   
