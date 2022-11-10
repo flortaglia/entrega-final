@@ -24,11 +24,8 @@ class ProductoDaoMongo extends DAO {
   async getByCategory(categoryt) {
     try {
       const productosCategory = await this.collection.find({ category: categoryt});
-      console.log('productosCategory',productosCategory)
-      console.log('productosCategory',productosCategory)
-
       const result = productosCategory.map((producto)=>(new ProductoDTO(producto)))
-      // console.log('product.dao.mogo getAll', result)
+      console.log('product.dao.mogo getAll', result)
       return result;
     } catch (error) {
       throw new CustomError(500, error);

@@ -5,21 +5,20 @@ class ProductoController{
     async getProductos(req, res){
         try {
             const verProductos = await DAO.getAll()
-            // res.render('productos.hbs',{verProductos})
-            res.status(200).json(verProductos)
+            res.render('productos.hbs',{verProductos})
+            // res.status(200).json(verProductos)
         } catch (error) {
-            res.status(error.errorCode).send(error.message);
+            res.status(error.errorCode).send(error.message); 
         }
     }
     async getProductosCategory(req, res){
         try {
             const category = req.params.category
-            console.log('category', category)
-            const verProductosCategory = await DAO.getByCategory(category)
-            console.log('verProductosCategory', verProductosCategory)
-            // res.render('productos.hbs',{verProductos})
-            if(!verProductosCategory){return res.status(404).json({error: "Categoria de producto no encontrada"})}
-            res.status(200).json(verProductosCategory)
+            const verProductos = await DAO.getByCategory(category)
+           
+            if(!verProductos){return res.status(404).json({error: "Categoria de producto no encontrada"})}
+            res.render('productos.hbs',{verProductos})
+            // res.status(200).json(verProductosCategory)
         } catch (error) {
             res.status(error.errorCode).send(error.message);
         }

@@ -9,6 +9,7 @@ const mainSms = require('../twilio/sms.js')
 const mainWhatsapp = require('../twilio/whatsapp.js')
 const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.class.js') 
 const DAOProduct = ProductoDaoFactory.getDao()
+let instance
 
 class CarritoDaoMongo extends DAO {
     constructor() {
@@ -116,7 +117,7 @@ class CarritoDaoMongo extends DAO {
     }
 
     static getInstance() {
-        let instance
+  
         if (!instance) instance = new CarritoDaoMongo();
         return instance;
     }
