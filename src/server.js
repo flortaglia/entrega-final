@@ -11,6 +11,8 @@ const initPassport = require( './passport/init.js');
 //IMPORTO ROUTERS  CL28
 const RouterUsuario = require( "./routes/usuario.route.js");
 const usuarioRouter = new RouterUsuario()
+const RouterUsuarioRest = require( "./routes/usuario.rest.route.js");
+const usuarioRouterRest = new RouterUsuarioRest()
 
 const rutas = require( "./routes/api.js");
 
@@ -64,8 +66,9 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   console.log("MODO FORK")
   app.use("/", usuarioRouter.start());
   app.use('/api', rutas);
-  app.use('/api/productos',productoRouter.start())///////
- 
+  app.use('/api/productos',productoRouter.start())///
+  app.use("/users", usuarioRouterRest.start());
+  
   expressServer = app.listen(process.env.PORT || 8080, (err) => {
       if(err) {
           console.log(`Se produjo un error al iniciar el servidor: ${err}`)

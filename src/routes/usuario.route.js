@@ -1,9 +1,6 @@
 const { Router } =require( 'express');
 const router= Router();
 const passport = require ('passport') 
-// const { getHome, getHomeAdmin, getLogin, getUserInfo,
-//        postLogin, getFailLogin, getSignup, postSignup, 
-//        getFailSignup, getLogout} 
 const UsuarioController = require('../controllers/usersController.js')
 const upload = require ('../multer/loadFile.js')
 const logger = require('../utils/logger.js')
@@ -25,7 +22,7 @@ class RouterUsuario{
     //INDEX
     router.get ('/', authMiddleware,this.controller.getHome)
     //HOME ADMIN ..........en proceso xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    router.get('/home',authMiddleware, getHomeAdmin)
+    router.get('/home',authMiddleware, this.controller.getHomeAdmin)
     ////////          LOGIN         ////////
     router.get('/login', this.controller.getLogin)
     router.get('/info', this.controller.getUserInfo)

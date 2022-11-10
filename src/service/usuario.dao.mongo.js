@@ -1,5 +1,6 @@
-const UsuarioDTO = require("../classes/usuario/UsuarioDTO.class.js")  ;
-const CustomError = require ("../classes/CustomError.class.js") ;
+const UsuarioDTO = require("../classes/usuario/UsuarioDTO.class.js");
+const UsuarioDTOPwd = require("../classes/usuario/UsuarioDTO.Pwd.class.js");
+const CustomError = require ("../classes/CustomError.class.js");
 const DAO = require ("../classes/Dao.class.js") ;
 const MongoClient = require ("../classes/MongoClient.class")
 const Usuarios = require ("../models/usuario.model.js")
@@ -31,7 +32,8 @@ class UsuarioDaoMongo extends DAO {
     async getByUsername(username) {
         try {
             const usuario = await this.collection.findOne({ username: username});
-            return new UsuarioDTO(usuario);
+            if(!usuario)return false;
+            return new UsuarioDTOPwd(usuario)
         } catch (error) {
             throw new CustomError(500, error);
         }
@@ -47,11 +49,12 @@ class UsuarioDaoMongo extends DAO {
             throw new CustomError(500, error);
         }
     }
-    async create(dataUsuario){
+    async create(newUser){ //////////////////es necesario un return de usuario, podría ser mensaje de OK???????
         try {
-            const usuario = new this.collection(dataUsuario)
-            await usuario.save() 
-            return new UsuarioDTO(usuario)
+            // username, password, nombre, direccion, edad, telefono,avatar
+            const usuario = new this.collection(newUser)
+            await usuario.save()           
+            return new UsuarioDTOPwd(usuario)
         } catch (error) {
             throw new CustomError(500, error);
         }          

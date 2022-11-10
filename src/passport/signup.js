@@ -1,8 +1,8 @@
 const LocalStrategy   = require('passport-local').Strategy;
-// const User = require ('../models/usuario.model.js');
 const UsuarioDaoFactory = require ('../classes/usuario/UsuarioDaoFactory.class.js');
 const DAO = UsuarioDaoFactory.getDao()
 const bCrypt  =require( 'bcrypt');
+const CustomError = require ("../classes/CustomError.class.js") ;
 
 // Estrategia de registro/suscripción....REGISTER
 module.exports = function (passport){
@@ -19,20 +19,25 @@ module.exports = function (passport){
                 if (existingUser) {
                     return done("User already exists", false);
                 }
-        
-                const newUser = {
+                if (password == req.body.password2){
+                    const newUser = {
                     username:username,
                     password: hashPassword(password),
                     name : req.body.name,
+                    surname : req.body.surname,
                     address : req.body.address,
-                    age : req.body.age,
                     phone: req.body.phone,
                     avatar: req.file.originalname                    
-                };
-                const createdUser = await DAO.create(newUser)
-                //User.create(newUser);
-                return done(null, createdUser);
+                    };
+                    const createdUser = await DAO.create(newUser)
+                    //User.create(newUser);
+                    return done(null, createdUser);
+                }else{
+                    throw new CustomError(500, "Las password no son iguales");//ver de hacer redirect ---ok back
+                }
+                
             } catch (err) {
+                console.log("error");
                 console.log(err);
                 done(err);
             }

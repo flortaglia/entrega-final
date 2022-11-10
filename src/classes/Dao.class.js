@@ -11,6 +11,9 @@ class DAO {
   async getByUsername() {
     throw new CustomError(500, "Falta implementar getByUsername en sub clase");
   }
+  async getByCategory() {
+    throw new CustomError(500, "Falta implementar getByCategory en sub clase");
+  }
   async create() {
     throw new CustomError(500, "Falta implementar create en sub clase");
   }

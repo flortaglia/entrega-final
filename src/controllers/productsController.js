@@ -11,7 +11,19 @@ class ProductoController{
             res.status(error.errorCode).send(error.message);
         }
     }
-
+    async getProductosCategory(req, res){
+        try {
+            const category = req.params.category
+            console.log('category', category)
+            const verProductosCategory = await DAO.getByCategory(category)
+            // res.render('productos.hbs',{verProductos})
+            if(!verProductosCategory){return res.status(404).json({error: "Categoria de producto no encontrada"})}
+            res.status(200).json(verProductosCategory)
+        } catch (error) {
+            res.status(error.errorCode).send(error.message);
+        }
+    }
+    
     async postProductos (req, res) {
         try {
             // const {title, description, code, price, thumbnail, stock} = req.body 
@@ -68,7 +80,7 @@ module.exports = ProductoController;
 
 // const getProductos = async (req, res) => {
 //     const verProductos = await ProductoDaoMongo.getAll()
-//     // const {username, name, address, age, phone, avatar} = req.user
+//     // const {username, name, surname,address, age, phone, avatar} = req.user
 //     // console.log('verProductos', verProductos)
 //     // res.json(verProductos)
 //     res.render('productos.hbs',{verProductos})

@@ -18,7 +18,7 @@ const formChat = document.querySelector('#formChat')
 const id = document.querySelector('#idUsuario') //mail
 const nameInput = document.querySelector('#nameInput')
 const surnameInput = document.querySelector('#surnameInput')
-const ageInput = document.querySelector('#ageInput')
+// const ageInput = document.querySelector('#ageInput')
 const aliasInput = document.querySelector('#aliasInput') 
 const avatarInput = document.querySelector('#avatarInput') 
 const messageInput = document.querySelector('#messageInput')
@@ -32,7 +32,7 @@ function sendMessage() {
         const mail = id.value
         const name = nameInput.value
         const surname = surnameInput.value
-        const age = ageInput.value
+        // const age = ageInput.value
         const alias = aliasInput.value
         const avatar = avatarInput.value
         const message = messageInput.value

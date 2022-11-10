@@ -10,6 +10,7 @@ class RouterProducto{
     start(){
         router.get('/', this.controller.getProductos)
         router.get('/:id', this.controller.getProductoId)
+        router.get('/:category', this.controller.getProductosCategory)
         router.post('/', this.controller.postProductos)
         router.put('/:id', this.controller.putProduct)
         router.delete('/:id', this.controller.deleteProduct )
