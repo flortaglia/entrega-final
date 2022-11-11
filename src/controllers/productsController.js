@@ -43,7 +43,9 @@ class ProductoController{
             const elemento = await DAO.getById(id)
             //  console.log('elemento', elemento)
             if(!elemento){return res.status(404).json({error: "Producto no encontrado"})}
-            res.status(200).json(elemento)
+            
+            res.render('productoById.hbs',{elemento})
+            // res.status(200).json(elemento)
         } catch (error) {
             res.status(error.errorCode).send(error.message); 
         }

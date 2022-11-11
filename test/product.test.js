@@ -12,9 +12,9 @@ describe("Test sobre Productos", () => {
 
     const productToCreate = productGenerate.generateProduct();
     
-    it("It creates a product (POST => /api/productos)", async () => {
+    it("It creates a product (POST => /productos)", async () => {
         response = await request
-                    .post("/api/productos")
+                    .post("/productos")
                     .send(productToCreate);
         id=response.body._id
         // console.log ('response.body',response.body)
@@ -27,9 +27,9 @@ describe("Test sobre Productos", () => {
         expect(response.body.code).to.eql(Number(productToCreate.code));
     });
    
-    it("Return all products - GET => /api/productos", async () => {
+    it("Return all products - GET => /productos", async () => {
     response = await request
-        .get("/api/productos")
+        .get("/productos")
 
     expect(response.status).to.eql(200);
     });
@@ -42,26 +42,26 @@ describe("Test sobre Productos", () => {
 
     const productToCreate2 = productGenerate.generateProduct()
     
-    it("Modificamos producto - PUT =>/api/productos/id ", async () => {
+    it("Modificamos producto - PUT =>/productos/id ", async () => {
         response = await request
-                    .put(`/api/productos/${id}`)
+                    .put(`/productos/${id}`)
                     .send(productToCreate2);
         // console.log ('response.body PUT',response.body)
         expect(response.status).to.eql(200);
     });
 
-    it("- GET a product by Id => /api/productos/id", async () => {
+    it("- GET a product by Id => /productos/id", async () => {
     response = await request
-        .get(`/api/productos/${id}`)
+        .get(`/productos/${id}`)
     
     expect(response.status).to.eql(200);
     
     expect(response.body).to.keys("_id","title", "description", "code","price", "thumbnail", "stock");
     });
 
-    it("- DELETE product by Id => /api/productos/id", async () => {
+    it("- DELETE product by Id => /productos/id", async () => {
     response = await request
-        .delete(`/api/productos/${id}`)
+        .delete(`/productos/${id}`)
     expect(response.status).to.eql(200);
     });
 

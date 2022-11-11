@@ -901,3 +901,6 @@
 [2022-11-11T18:02:05.791Z] - warn : Método GET URL /views/info inexistente
 [2022-11-11T18:02:13.007Z] - warn : Método GET URL /views/info inexistente
 [2022-11-11T18:02:49.518Z] - warn : Método GET URL /image/ inexistente
+[2022-11-11T20:31:49.577Z] - warn : Método GET URL /api/alt= inexistente
+[2022-11-11T20:35:02.849Z] - warn : Método GET URL /api/alt= inexistente
+[2022-11-11T20:59:28.533Z] - warn : Método GET URL /api/productos/categorias/pizzas inexistente

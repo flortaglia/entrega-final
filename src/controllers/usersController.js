@@ -29,7 +29,7 @@ class UsuarioController{
   }
   async postLogin(req, res){
       let user= req.username
-      res.redirect('/api/productos')
+      res.redirect('/productos')
   }
   async getFailLogin(req, res){
       // console.log('req.session.messages',req.session.messages)

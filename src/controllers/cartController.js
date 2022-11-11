@@ -15,7 +15,7 @@ class CarritoController{
             const username = req.user.username
             const address = req.user.address
             await DAO.addProductService(cantidad,id_prod,username, address)
-            res.redirect('/api/productos')
+            res.redirect('/productos')
             //res.json(carrito)
         } catch (error) {
             res.status(error.errorCode).send(error.message);
@@ -81,7 +81,7 @@ class CarritoController{
             const username = req.user.username
             console.log('username',username);
             await DAO.deleteProductFromCartService(id_prod,username)
-            res.redirect('/api/cart') 
+            res.redirect('/carrito') 
         } catch (error) {
             res.status(error.errorCode).send(error.message);
         } 

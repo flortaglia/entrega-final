@@ -1,6 +1,6 @@
 const https = require("https");
 
-const options = "http://localhost:8080/api/productos"
+const options = "http://localhost:8080/productos"
 
 
 const req = https.request(options, (res) => {
