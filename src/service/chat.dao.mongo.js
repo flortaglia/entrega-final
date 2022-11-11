@@ -1,4 +1,4 @@
-const chatDTO = require("../classes/chatDTO.class.js")  ;
+const chatDTO = require("../classes/chat/chatDTO.class.js")  ;
 const CustomError = require ("../classes/CustomError.class.js") ;
 const DAO = require ("../classes/Dao.class.js") ;
 const MongoClient = require ("../classes/MongoClient.class")
@@ -22,6 +22,9 @@ class ChatDaoMongo extends DAO {
     //   await this.db.disconnect();
     // }
       
+  }
+  async getByUsername() {
+    throw new CustomError(500, "Falta implementar getByUsername en sub clase");
   }
   async getById(id)  {
     try {

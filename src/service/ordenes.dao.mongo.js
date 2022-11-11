@@ -4,8 +4,6 @@ const DAO = require ("../classes/Dao.class.js") ;
 const MongoClient = require ("../classes/MongoClient.class")
 const Ordenes = require ("../models/order.model.js")
 
-const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.class.js') 
-const DAOProduct = ProductoDaoFactory.getDao()
 let instance
 
 class OrdenesDaoMongo extends DAO {

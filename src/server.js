@@ -66,7 +66,7 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   console.log("MODO FORK")
   app.use("/", usuarioRouter.start());
   app.use('/carrito', carritoRouter.start());
-  app.use('/productos',productoRouter.start())///
+  app.use('/productos',productoRouter.start())
   app.use("/users", usuarioRouterRest.start());
   
   expressServer = app.listen(process.env.PORT || 8080, (err) => {
