@@ -50,9 +50,10 @@ class CarritoController{
             res.status(error.errorCode).send(error.message);
         }
     }
-    sendOrderEmail(user, body){
+    async sendOrderEmail(user, body){   
         try {
-            main(`Nuevo Pedido de ${user.name} - ${user.username}`, body) 
+            console.log('holaa soy sendorder')
+           await  main(`Nuevo Pedido de ${user.name} - ${user.username}`, body) 
         } catch (error) {
             res.status(error.errorCode).send(error.message);
         }
@@ -60,16 +61,20 @@ class CarritoController{
     async cartCheckout(req, res){  
         try {
             let user= req.user
-            let productos = await DAO.cartCheckoutService(user)
-            // res.render('mail.hbs',{productos,layout: null}, (error, html) => {
-            //     this.sendOrderEmail(req.user, html)
-            // }) /////////////////////VER SOLUCIONAR ENVIO MAIL ///////////
+            console.log('user', user)
+            let order = await DAO.cartCheckoutService(user)
+            const productos = order.productos
+            res.render('mail.hbs',{order,layout: null}, (error, html) => {
+                main(`Nuevo Pedido de ${user.name} - ${user.username}`, html) 
+             })
+        //  this.sendOrderEmail(user, "hola")
+        //  main(`Nuevo Pedido de ${user.name} - ${user.username}`, "hola") 
             res.redirect('/')
         } catch (error) {
             res.status(error.errorCode).send(error.message);
         } 
     }
-    async deleteProductFromCart(req,res){ 
+    async deleteProductFromCart(req,res){   
         try {
             const id_prod=req.params.id
             console.log('id_prod',id_prod);

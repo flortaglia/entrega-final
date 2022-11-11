@@ -7,13 +7,15 @@ const Carritos = require ("../models/carrito.model.js")
 
 const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.class.js') 
 const DAOProduct = ProductoDaoFactory.getDao()
+const OrdenesDaoFactory = require ('../classes/Ordenes/OrderDaoFactory.class.js') 
+const DAOorder = OrdenesDaoFactory.getDao()
 let instance
 
 class CarritoDaoMongo extends DAO {
     constructor() {
       super();
       this.collection = Carritos;
-      this.db = new MongoClient();
+      this.db = MongoClient.getInstance();
     }
     async deleteById(id){
         try {
@@ -68,19 +70,15 @@ class CarritoDaoMongo extends DAO {
         try {
             let carrito = await this.getByusername(username)
             if(!carrito) { carrito= await this.create(username, address)}
-            carrito.productos.map( (prod)=> console.log('prod.id',prod._id))
+            // carrito.productos.map( (prod)=> console.log('prod.id',prod._id))
             const indice = carrito.productos.findIndex( (prod)=> prod._id === id_prod)
-            console.log(indice)
+            // console.log(indice)
             if(indice >= 0){
                 carrito.productos[indice].cantidad += cantidad
             }else{
-                console.log('id_prod else',id_prod)
                 let producto = JSON.stringify(await DAOProduct.getById(id_prod))
-                console.log('producto',(producto))
                 const productos2 = JSON.parse(producto)
-                console.log('productos2', productos2)
                 const productoCantidad= carrito.productos.push({...productos2,cantidad})
-                console.log('productoCantidad', typeof productoCantidad)
                 // console.log('new CarritoDTO(productoCantidad)',new CarritoDTO(productoCantidad))
 
                 // carrito.productos.push({
@@ -111,23 +109,16 @@ class CarritoDaoMongo extends DAO {
     async cartCheckoutService(user){
         try {
             let carrito = await this.getByusername(user.username)  
+            let order = await DAOorder.create(carrito)
             const productos = carrito.productos
             const message= carrito.productos.map(producto=>
                 `PRODUCTO: ${producto.title} PRECIO UNIT.: ${producto.price} CANTIDAD: ${producto.cantidad}`  
             )
-            // const ids= carrito.productos.map(producto=>producto._id
-            //      `PRODUCTO: ${producto.title} PRECIO UNIT.: ${producto.price} CANTIDAD: ${producto.cantidad}`  
-            // )
-            // const quantity= carrito.productos.map(producto=>`CANTIDAD: ${producto.cantidad}`)
-            // const productsInCart = ids.map(async id => await DAOProduct.getById(id))
-            // const message = productsInCart.map(producto=>
-            //     `PRODUCTO: ${producto.title} PRECIO UNIT.: ${producto.price} CANTIDAD: ${producto.cantidad}`
-            // )///for?????xxxxxxxxxxxxxxxxx
-            // mainWhatsapp(`Nuevo Pedido de ${user.name} - ${user.username}: ${message.join()}`)
-            // const recibido = `El Pedido se encuentra en proceso. Gracias por su compra`
-            // mainSms(user.phone, recibido)
+          
+            const recibido = `El Pedido se encuentra en proceso. Gracias por su compra`
+      
             await this.deleteById(carrito._id)
-            return productos ///a donde va 
+            return order 
         } catch (error) {
             throw new CustomError(500, error);
         }

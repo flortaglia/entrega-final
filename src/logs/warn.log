@@ -897,3 +897,7 @@
 [2022-11-10T10:58:40.800Z] - warn : Método GET URL /favicon.ico inexistente
 [2022-11-11T13:12:55.277Z] - warn : Método GET URL /favicon.ico inexistente
 [2022-11-11T13:46:09.526Z] - warn : Método GET URL /api/carrito/deleteproducto/ inexistente
+[2022-11-11T18:01:58.391Z] - warn : Método GET URL /public/views/info inexistente
+[2022-11-11T18:02:05.791Z] - warn : Método GET URL /views/info inexistente
+[2022-11-11T18:02:13.007Z] - warn : Método GET URL /views/info inexistente
+[2022-11-11T18:02:49.518Z] - warn : Método GET URL /image/ inexistente
