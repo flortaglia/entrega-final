@@ -895,3 +895,5 @@
 [2022-11-09T22:06:19.119Z] - warn : Método GET URL /favicon.ico inexistente
 [2022-11-09T22:32:16.927Z] - warn : Método GET URL /image/WhatsApp inexistente
 [2022-11-10T10:58:40.800Z] - warn : Método GET URL /favicon.ico inexistente
+[2022-11-11T13:12:55.277Z] - warn : Método GET URL /favicon.ico inexistente
+[2022-11-11T13:46:09.526Z] - warn : Método GET URL /api/carrito/deleteproducto/ inexistente

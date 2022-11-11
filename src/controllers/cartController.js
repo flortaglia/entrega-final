@@ -3,6 +3,8 @@ const main = require('../nodemailer/mailAdmin.js')
 //     deleteProductFromCartService } = require ('../service/carrito.dao.mongo.js')
 const CarritoDaoFactory = require ('../classes/carrito/CarritoDaoFactory.class.js') 
 const DAO = CarritoDaoFactory.getDao()
+const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.class.js') 
+const DAOProduct = ProductoDaoFactory.getDao()
 
 class CarritoController{
 
@@ -11,7 +13,8 @@ class CarritoController{
             const cantidad= req.body.cant || 1
             const id_prod=req.params.id
             const username = req.user.username
-            await DAO.addProductService(cantidad,id_prod,username)
+            const address = req.user.address
+            await DAO.addProductService(cantidad,id_prod,username, address)
             res.redirect('/api/productos')
             //res.json(carrito)
         } catch (error) {
@@ -23,13 +26,27 @@ class CarritoController{
         try {
             const username = req.user.username
             let carrito = await DAO.getUserCartService(username)
+
             if(!carrito){
                 res.render('cart.hbs', false)
             }else{
-                const productos = carrito.productos 
+                
+              
+                for (let index = 0; index < carrito.productos.length; index++) {
+                    let productosCarrito =JSON.parse(
+                        JSON.stringify(await DAOProduct.getById(carrito.productos[index]._id ))
+                    )
+                    console.log('productosCarrito',productosCarrito)  
+                    if (productosCarrito.price !== carrito.productos[index].price ) {
+                        carrito.productos[index].price=productosCarrito.price
+                       
+                    }    
+                }
+                await DAO.update(carrito._id,carrito.productos)
+                const productos = carrito.productos
                 res.render('cart.hbs',{productos})
             }
-        } catch (error) {
+        } catch (error) {  
             res.status(error.errorCode).send(error.message);
         }
     }
@@ -44,9 +61,9 @@ class CarritoController{
         try {
             let user= req.user
             let productos = await DAO.cartCheckoutService(user)
-            res.render('mail.hbs',{productos,layout: null}, (error, html) => {
-                sendOrderEmail(req.user, html)
-            })
+            // res.render('mail.hbs',{productos,layout: null}, (error, html) => {
+            //     this.sendOrderEmail(req.user, html)
+            // }) /////////////////////VER SOLUCIONAR ENVIO MAIL ///////////
             res.redirect('/')
         } catch (error) {
             res.status(error.errorCode).send(error.message);
