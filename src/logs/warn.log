@@ -904,3 +904,5 @@
 [2022-11-11T20:31:49.577Z] - warn : Método GET URL /api/alt= inexistente
 [2022-11-11T20:35:02.849Z] - warn : Método GET URL /api/alt= inexistente
 [2022-11-11T20:59:28.533Z] - warn : Método GET URL /api/productos/categorias/pizzas inexistente
+[2022-11-12T14:23:44.939Z] - warn : Método GET URL /chat inexistente
+[2022-11-12T14:24:04.925Z] - warn : Método GET URL /index inexistente

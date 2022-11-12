@@ -18,7 +18,7 @@ class RouterUsuario{
     //INDEX
     router.get ('/', userMiddlewares.authMiddleware, this.controller.getHome)
     //HOME ADMIN ..........en proceso xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    router.get('/home',userMiddlewares.authMiddleware,userMiddlewares.isAdminMiddleware, this.controller.getHomeAdmin)  ////
+    router.get('/home',userMiddlewares.authMiddleware, this.controller.getHomeAdmin)  ////
     ////////          LOGIN         ////////
     router.get('/login', this.controller.getLogin)
     router.get('/info', this.controller.getUserInfo)
