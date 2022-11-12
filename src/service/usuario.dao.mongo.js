@@ -52,7 +52,7 @@ class UsuarioDaoMongo extends DAO {
     async create(newUser){ 
         try {
             // username, password, nombre, direccion, edad, telefono,avatar
-            const usuario = new this.collection(newUser)
+            const usuario = new this.collection(newUser)////
             await usuario.save()           
             return new UsuarioDTOPwd(usuario)
         } catch (error) {
@@ -60,9 +60,9 @@ class UsuarioDaoMongo extends DAO {
         }          
     }
 
-    async update(id, username, name,surname, address, phone, avatar){
+    async update(id, username, name,surname, address, phone, avatar,admin){
         try {
-            await this.collection.updateOne({_id:id}, {username, name,surname, address, phone, avatar})   
+            await this.collection.updateOne({_id:id}, {username, name,surname, address, phone, avatar,admin})   
             const usuario = await this.getById(id)  
             return new UsuarioDTO(usuario)
         } catch (error) {

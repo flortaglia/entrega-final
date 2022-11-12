@@ -4,14 +4,10 @@ const passport = require ('passport')
 const UsuarioController = require('../controllers/usersController.js')
 const upload = require ('../multer/loadFile.js')
 const logger = require('../utils/logger.js')
+const UsuarioMiddleware = require('./user.middleware.js')
+const userMiddlewares= new UsuarioMiddleware()
 
-function authMiddleware(req, res, next) {
-  if (req.user) {
-    next();
-  } else {
-    res.redirect("/login");
-  }
-}
+
 
 class RouterUsuario{
   constructor(){
@@ -20,9 +16,9 @@ class RouterUsuario{
 
   start(){
     //INDEX
-    router.get ('/', authMiddleware,this.controller.getHome)
+    router.get ('/', userMiddlewares.authMiddleware, this.controller.getHome)
     //HOME ADMIN ..........en proceso xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-    router.get('/home',authMiddleware, this.controller.getHomeAdmin)
+    router.get('/home',userMiddlewares.authMiddleware,userMiddlewares.isAdminMiddleware, this.controller.getHomeAdmin)  ////
     ////////          LOGIN         ////////
     router.get('/login', this.controller.getLogin)
     router.get('/info', this.controller.getUserInfo)

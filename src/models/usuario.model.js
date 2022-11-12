@@ -7,7 +7,8 @@ const usuarioSchema = new mongoose.Schema({
     surname:{ type: String, require: true},
     address:{ type: String, require: true},
     phone:{ type: String, require: true },
-    avatar:{ type: String, require: true}
+    avatar:{ type: String, require: true},
+    admin:{ type: Boolean, require: true},
 })
 
 const Usuarios = mongoose.model ("usuarios", usuarioSchema)

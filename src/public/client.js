@@ -2,39 +2,34 @@
 // Lado cliente
 const socket = io() 
 //Fecha
-
 const tiempoTranscurrido = Date.now()
 const hoy = new Date(tiempoTranscurrido)
 const fecha= hoy.toLocaleDateString()
 const tiempo = new Date()
 const argHora=tiempo.toLocaleTimeString('it-IT')
-
 // const hora= hoy.getHours()
 // const horafinal= hora.toString().padStart(2,"0")
-
-
 //CHAT 
 const formChat = document.querySelector('#formChat')
 const id = document.querySelector('#idUsuario') //mail
-const nameInput = document.querySelector('#nameInput')
-const surnameInput = document.querySelector('#surnameInput')
+// const nameInput = document.querySelector('#nameInput')
+// const surnameInput = document.querySelector('#surnameInput')
 // const ageInput = document.querySelector('#ageInput')
-const aliasInput = document.querySelector('#aliasInput') 
-const avatarInput = document.querySelector('#avatarInput') 
+// const aliasInput = document.querySelector('#aliasInput') 
+// const avatarInput = document.querySelector('#avatarInput') 
 const messageInput = document.querySelector('#messageInput')
-
-
+//VISTA CHAT
 const totalMessages = document.querySelector('#totalMessages')
 
 // EMITO MENSAJES AL SERVIDOR
 function sendMessage() {
     try {
         const mail = id.value
-        const name = nameInput.value
-        const surname = surnameInput.value
+        // const name = nameInput.value
+        // const surname = surnameInput.value
         // const age = ageInput.value
-        const alias = aliasInput.value
-        const avatar = avatarInput.value
+        // const alias = aliasInput.value
+        // const avatar = avatarInput.value
         const message = messageInput.value
         const tiempochat = `${fecha}, ${argHora}`
         console.log(tiempochat)

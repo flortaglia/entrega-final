@@ -8,6 +8,7 @@ class UsuarioDTOPwd {
         this.address = data.address
         this.phone =data.phone
         this.avatar = data.avatar
+        this.admin= data.admin
     }
 }
 module.exports = UsuarioDTOPwd; 

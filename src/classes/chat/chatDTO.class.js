@@ -1,13 +1,10 @@
 class chatDTO {
     constructor(data){
+        this._id=data.id
         this.mail= data.mail
-        this.name =data.name
-        this.surname = data.surname
-        this.age = data.age
-        this.alias =data.alias
-        this.avatar = data.avatar
-        this.message = data.message
+        this.type =data.type
         this.tiempochat=data.tiempochat
+        this.message = data.message
     }
 }
 module.exports = chatDTO; 

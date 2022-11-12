@@ -15,7 +15,6 @@ class ProductoController{
         try {
             const category = req.params.category
             const verProductos = await DAO.getByCategory(category)
-           
             if(!verProductos){return res.status(404).json({error: "Categoria de producto no encontrada"})}
             res.render('productos.hbs',{verProductos})
             // res.status(200).json(verProductosCategory)
