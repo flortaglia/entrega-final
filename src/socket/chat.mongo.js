@@ -1,7 +1,4 @@
 const { Server } = require( "socket.io");
-const messages= []
-const productos= []
-const {escribir} = require ('./write.js')
 const logger = require('../utils/logger.js')
 const ChatDaoFactory = require ('../classes/chat/ChatDaoFactory.class.js') 
 const DAO = ChatDaoFactory.getDao()

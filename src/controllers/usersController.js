@@ -8,6 +8,7 @@ class UsuarioController{
     res.sendFile(path.join(__dirname, ".././public/home.html"));
   }
   async getHomeAdmin(req,res){
+      // res.render('chats.hbs');
       res.sendFile(path.join(__dirname, ".././public/index.html"));
   }
   //LOGIN

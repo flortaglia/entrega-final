@@ -38,7 +38,7 @@ class ProductoController{
     async getProductoId (req, res) {
         try {
             const id = req.params.id
-            console.log('id', id)
+            console.log('id getProductoId ', id)
             const elemento = await DAO.getById(id)
             //  console.log('elemento', elemento)
             if(!elemento){return res.status(404).json({error: "Producto no encontrado"})}

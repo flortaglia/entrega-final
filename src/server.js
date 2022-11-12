@@ -18,6 +18,8 @@ const RouterCarrito = require( "./routes/carrito.route.js");
 const carritoRouter = new RouterCarrito()
 const RouterProducto = require ("./routes/producto.route.js")
 const productoRouter = new RouterProducto()
+const RouterChat = require ("./routes/chat.route.js")
+const mensajesRouter = new RouterChat()
 
 const configSession = require( "./session/configSession.js");
 const { engine } = require('express-handlebars')
@@ -68,6 +70,7 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   app.use('/carrito', carritoRouter.start());
   app.use('/productos',productoRouter.start())
   app.use("/users", usuarioRouterRest.start());
+  app.use("/", mensajesRouter.start());
   
   expressServer = app.listen(process.env.PORT || 8080, (err) => {
       if(err) {

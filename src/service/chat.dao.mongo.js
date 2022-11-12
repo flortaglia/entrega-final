@@ -59,9 +59,9 @@ class ChatDaoMongo extends DAO {
     }
   }
 
-  async getByUsername(username) {
+  async getByUsername(mail) {
     try {
-      const chats = await this.collection.findOne({ username: username});
+      const chats = await this.collection.find({ mail: mail});
       return chats.map((chat)=>new chatDTO(chat));
     } catch (error) {
       throw new CustomError(500, error);

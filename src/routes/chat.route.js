@@ -7,7 +7,8 @@ class RouterChat{
         this.controller= new ChatController()
     }
     start(){ 
-        router.get('/chat/email', this.controller.getChatsByUsername)
+        router.get('/chat/:mail', this.controller.getChatsByMail)
+        router.get('/chat', this.controller.getChat)
         return router
     }
 }

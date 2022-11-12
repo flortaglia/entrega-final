@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat</title>
+</head>
+<body>
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item mx-5 my-2">
+          <a class="nav-link" href="/productos">Productos</a>
+        </li>
+        <li class="nav-item mx-5 my-2">
+          <a class="nav-link" href="/carrito">Carrito</a>
+        </li>
+        <li class="nav-item mx-5 my-2">
+          <a class="nav-link" href="/info">Datos</a>
+        </li>
+        <li class="nav-item mx-5 my-2">
+          <a class="nav-link" href="/chat">Chats</a>
+        </li>
+        <form class="d-flex" role="search">
+            <a class="btn btn-primary mx-5 my-2" href="/logout">Logout</a>
+        </form>
+    </ul>
+
+    <main class="container">
+        
+        <!-- Inicio CHAT -->
+    <!-- FORM CHAT-->
+     <div class="container">
+        <h3 style="margin:2rem 0;"> Contáctenos:</h3>
+        <form id="formChat" style="margin-top: 2rem;">
+            mail: <input id="idUsuario" type="email" name="Id" class="input-group mb-3" placeholder="Ingrese su mail" value="PP@gmail.com" required>
+            text: <input id="messageInput" type="text" name="message" class="input-group mb-3" placeholder="mensaje del usuario" value="Hola!!" required>
+            
+            <input type="submit" value="Enviar Mensaje"  class="btn btn-primary" style="margin:2rem 0;"> 
+            <!-- <input type="submit" value="Finalizar Charla"  class="btn btn-primary" style="margin:2rem 0;"> -->
+        </form>
+    </div> 
+    <!-- VISTA CHAT -->
+    <div class="container" id="totalMessages"></div>
+    <!-- Fin CHAT -->
+    </main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
+</body>
+</html> -->
