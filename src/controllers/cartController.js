@@ -9,7 +9,8 @@ class CarritoController{
    
     async addProduct(req,res){
         try {
-            const cantidad= req.body.cant || 1
+            const cantidad= Number(req.params.quantity)
+            
             const id_prod=req.params.id
             const username = req.user.username
             const address = req.user.address
@@ -19,7 +20,7 @@ class CarritoController{
         } catch (error) {
             res.status(error.errorCode).send(error.message);
         }  
-        
+          
     }     
     async getUserCart(req, res){ 
         try {

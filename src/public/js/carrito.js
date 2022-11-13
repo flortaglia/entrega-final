@@ -3,22 +3,35 @@ class Carrito{
         this.bindEvents()
     }
     bindEvents(){
-        const addProductBtm = document.querySelector(".addProduct")
-        addProductBtm.addEventListener("click",this.addProduct, true);
+        const addProductBtms = document.querySelectorAll(".addProduct")
+        addProductBtms.forEach(btn => {
+            btn.addEventListener("click",this.addProduct, true);
+        })
+        
     }
     addProduct(event) {
         event.preventDefault();
-        const url = event.target.href
-        fetch(url).then((json)=> {
+        let url = event.target.href
+        const quantity = event.target.parentElement.querySelector("input").value
+        url = `${url}/${quantity}`
+        fetch(url)
+        .then((json)=> {
             Swal.fire({
                 position: 'top-end',
                 icon: 'success',
                 title: 'Prodcucto agregado',
                 showConfirmButton: false,
                 timer: 1500
-              })
-         
-           console.log(json)
+            })
         })
+        .catch(function(error) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: error.message || "Ha ocurrido un error",
+                showConfirmButton: false,
+                timer: 1500
+            })
+        });
     }
 }
