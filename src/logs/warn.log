@@ -54,3 +54,6 @@
 [2022-11-13T17:50:04.913Z] - warn : Método: GET, URL: /favicon.ico inexistente
 [2022-11-13T17:51:18.753Z] - warn : Método: GET, URL: /favicon.ico inexistente
 [2022-11-13T17:52:20.445Z] - warn : Método: GET, URL: /favicon.ico inexistente
+[2022-11-13T17:54:37.034Z] - warn : Método: GET, URL: /carrito/productos/636d41824171eba9bcb1fbac inexistente
+[2022-11-13T17:55:27.168Z] - warn : Método: GET, URL: /carrito/productos/636d41824171eba9bcb1fbac inexistente
+[2022-11-13T17:57:29.287Z] - warn : Método: GET, URL: /favicon.ico inexistente

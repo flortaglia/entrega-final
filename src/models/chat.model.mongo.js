@@ -3,7 +3,7 @@ const mongoose = require("mongoose") ;
 const chatSchema = new mongoose.Schema({
   mail: { type: String, require: true, max: 200 },
   type: { type: String, require: true, max: 200 },
-  tiempochat:{ type: Date, required: true },
+  tiempochat:{ type: String, required: true },
   message:{ type: String, require: true},
 })
 

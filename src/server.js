@@ -23,6 +23,8 @@ const RouterChat = require ("./routes/chat.route.js")
 const mensajesRouter = new RouterChat()
 const RouterOrder = require( "./routes/order.route.js");
 const OrderRouter= new RouterOrder()
+const RouterConfig = require( "./routes/config.datos.route.js");
+const ConfigRouter= new RouterConfig()
 
 const configSession = require( "./session/configSession.js");
 const { engine } = require('express-handlebars')
@@ -75,6 +77,7 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   app.use("/users", usuarioRouterRest.start());
   app.use("/", mensajesRouter.start());
   app.use("/", OrderRouter.start());
+  app.use("/", ConfigRouter.start());
   
   expressServer = app.listen(config.serverPort, (err) => {
       if(err) {
