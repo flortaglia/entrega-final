@@ -1,7 +1,8 @@
 
 class ProductoDTO {
+
     constructor(data){
-        this._id=data.id
+        this._id=data._id
         this.title= data.title
         this.category= data.category
         this.description =data.description

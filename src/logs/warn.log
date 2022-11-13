@@ -1,3 +1,9 @@
 [2022-11-12T15:35:08.891Z] - warn : Método GET URL /client.js inexistente
 [2022-11-12T15:35:15.982Z] - warn : Método GET URL /client.js inexistente
 [2022-11-12T15:35:30.289Z] - warn : Método GET URL /client.js inexistente
+[2022-11-12T15:46:49.039Z] - warn : Método GET URL /fulano inexistente
+[2022-11-12T16:47:21.458Z] - warn : Método POST URL /login inexistente
+[2022-11-12T16:47:32.919Z] - warn : Método POST URL /login inexistente
+[2022-11-12T16:49:07.111Z] - warn : Método POST URL /login inexistente
+[2022-11-12T16:49:10.510Z] - warn : Método POST URL /login inexistente
+[2022-11-13T00:26:36.691Z] - warn : Método GET URL /ordenes inexistente

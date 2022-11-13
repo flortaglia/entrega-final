@@ -11,6 +11,16 @@ class OrdenesController{
             res.status(error.errorCode).send(error.message); 
         }
     }
-         
+    async getOrdersByMail(req, res){ 
+        try {
+            const username = req.user.username
+            let verOrden = await DAO.getByusername(username)
+            res.status(200).json(verOrden)
+            // res.render('cart.hbs',{productos})
+        } catch (error) {  
+            res.status(error.errorCode).send(error.message);
+        }
+    
+    }
 }
 module.exports = OrdenesController;

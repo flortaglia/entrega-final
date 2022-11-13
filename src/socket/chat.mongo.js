@@ -38,7 +38,7 @@ async function configChatMongo(expressServer){
                 //RECIBO mensaje y lo anido
                 // escribir(messages)
                 try {
-                    await DAO.create(messageInfo)
+                    await DAO.create({...messageInfo,type:"usuario"})
                     chatmessages = await DAO.getAll()    
                 } catch (error) {
                     console.log(error)

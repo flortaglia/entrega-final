@@ -34,25 +34,26 @@ class CarritoDaoMongo extends DAO {
     }
     async getAll(){
         try {
-            const doc = await this.collection.find({ });
-            return doc;
+            const carritos = await this.collection.find({ });
+            const result = carritos.map((carrito)=>(new CarritoDTO(carrito)))
+            return result;
         } catch (error) {
             throw new CustomError(500, error); 
         }
     }
     async create(username, address){ 
         try {
-            const doc = new this.collection({username:username,address:address, timestamp:Date.now(), productos:[]})
-            await doc.save() 
-            return doc
+            const carrito = new this.collection({username:username,address:address, timestamp:Date.now(), productos:[]})
+            await carrito.save() 
+            return new CarritoDTO(carrito)
         } catch (error) {
             throw new CustomError(500, error); 
         }       
     }
     async getByusername(username){ 
         try {
-            const doc = await this.collection.findOne({ username: username});
-            return doc;
+            const carrito = await this.collection.findOne({ username: username});
+            return carrito
         } catch (error) {
             throw new CustomError(500, error);
         }
@@ -60,38 +61,42 @@ class CarritoDaoMongo extends DAO {
     async update(id,productos){  
         try {
             await this.collection.updateOne({_id:id}, {productos})   
-            const elemento = await this.getById(id)  
-            return elemento
+            const carrito = await this.getById(id)  
+            return new CarritoDTO(carrito)
         } catch (error) {
             throw new CustomError(500, error);
         }
     }
     async addProductService(cantidad,id_prod,username,address){
         try {
+            console.log('producto addProductService')
             let carrito = await this.getByusername(username)
+            console.log('carrito cartdao mongo', carrito)
             if(!carrito) { carrito= await this.create(username, address)}
             const indice = carrito.productos.findIndex( (prod)=> prod._id === id_prod)
+            console.log('indice addProductService', indice)
             if(indice >= 0){
                 carrito.productos[indice].cantidad += cantidad
             }else{
                 let producto = JSON.parse(JSON.stringify(await DAOProduct.getById(id_prod)))
+                console.log('producto addProductService', producto)
                 carrito.productos.push({...producto,cantidad})   
             }
             carrito = await this.update(carrito._id,carrito.productos)
-           
+            console.log('carrito update addProductService', carrito)
         } catch (error) {
             throw new CustomError(500, error);  
         }
     }
 
-    async getUserCartService(username){ 
-        try {
-            let carrito = await this.getByusername(username)
-            return carrito 
-        } catch (error) {
-            throw new CustomError(500, error);
-        }
-    }
+    // async getUserCartService(username){ 
+    //     try {
+    //         let carrito = await this.getByusername(username)
+    //         return carrito 
+    //     } catch (error) {
+    //         throw new CustomError(500, error);
+    //     }
+    // }
 
     async cartCheckoutService(user){
         try {

@@ -4,11 +4,11 @@ class UsuarioMiddleware{
         if (req.user) {
         next();
         } else {
-        res.redirect("/login");
+        res.redirect("/");
         }
     }
     isAdminMiddleware(req, res, next) {  ///////
-        if (req.user.admin) {
+        if (req.user.admin!="usuario") {
             next();
         } else {
             res.redirect("/");

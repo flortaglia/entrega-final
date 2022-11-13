@@ -30,8 +30,9 @@ class OrdenesDaoMongo extends DAO {
     }
     async getAll(){
         try {
-            const orden = await this.collection.find({ });
-            return new OrdenesDTO(orden);
+            const ordenes = await this.collection.find({ });
+            const result = ordenes.map((orden)=>(new OrdenesDTO(orden)))
+            return result;
         } catch (error) {
             throw new CustomError(500, error); 
         }
@@ -43,10 +44,10 @@ class OrdenesDaoMongo extends DAO {
         }   
         return lastOrder.orderNumber + 1
     }
-    async create(carrito){  ///////DTO FALTA
+    async create(carrito){  
         try {
             console.log('carrito.productos', carrito.productos)
-            const doc = new this.collection({
+            const orden = new this.collection({
                 orderNumber:await this.nextOrderNumber(),
                 username:carrito.username,
                 address:carrito.address,
@@ -55,8 +56,8 @@ class OrdenesDaoMongo extends DAO {
                 status:"generada",
                 productos: carrito.productos,
             })
-            await doc.save() 
-            return doc
+            await orden.save() 
+            return new OrdenesDTO(orden);
         } catch (error) {
             throw new CustomError(500, error); 
         }       

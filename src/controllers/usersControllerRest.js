@@ -15,7 +15,7 @@ class UsuarioControllerRest{
     async postUsuarios (req, res) {
         try {
             // const {username, password, name, surname, address, phone,avatar} = req.body 
-            const usuario = await DAO.create({...req.body, admin:false }) /////cambiado agregado admin=0
+            const usuario = await DAO.create({...req.body, admin:"usuario" }) /////cambiado agregado admin=0
             res.status(201).json(usuario)
         } catch (error) {
             console.log('error postUsuarios',error)

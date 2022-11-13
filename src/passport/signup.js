@@ -28,7 +28,7 @@ module.exports = function (passport){
                     address : req.body.address,
                     phone: req.body.phone,
                     avatar: req.file.originalname,
-                    admin:false                    
+                    admin:"usuario"                   
                     };
                     const createdUser = await DAO.create(newUser)
                     //User.create(newUser);

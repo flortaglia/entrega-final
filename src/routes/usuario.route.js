@@ -16,13 +16,13 @@ class RouterUsuario{
 
   start(){
     //INDEX
-    router.get ('/', userMiddlewares.authMiddleware, this.controller.getHome)
+    router.get ('/home', userMiddlewares.authMiddleware, this.controller.getHome)
     //HOME ADMIN ..........en proceso xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     router.get('/chatadmin',userMiddlewares.authMiddleware,userMiddlewares.isAdminMiddleware, this.controller.getHomeAdmin)  ////
     ////////          LOGIN         ////////
-    router.get('/login', this.controller.getLogin)
+    router.get('/', this.controller.getLogin)
     router.get('/info', this.controller.getUserInfo)
-    router.post('/login',passport.authenticate('login',
+    router.post('/',passport.authenticate('login',
       {failureRedirect: '/fail-login',failureMessage: true}),
       this.controller.postLogin
     )
