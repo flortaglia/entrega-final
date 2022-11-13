@@ -11,13 +11,24 @@
 <body>
     <ul class="nav nav-pills justify-content-center">
         <li class="nav-item mx-5 my-2">
-          <a class="nav-link" href="/productos">Productos</a>
+          <div class="btn-group dropend">
+            <a type="button" class="btn btn-secondary " href="/productos">
+              Productos
+            </a>
+            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropend</span>
+            </button> 
+            <ul class="dropdown-menu ">
+              <li><a class="dropdown-item" href="/productos/categoria/pizzas">Pizzas</a></li>
+              <li><a class="dropdown-item" href="/productos/categoria/empanadas">Empanadas</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item mx-5 my-2  ">
+          <a class="nav-link btn btn-secondary" href="/carrito">Carrito</a>
         </li>
         <li class="nav-item mx-5 my-2">
-          <a class="nav-link" href="/carrito">Carrito</a>
-        </li>
-        <li class="nav-item mx-5 my-2">
-          <a class="nav-link" href="/info">Datos</a>
+          <a class="nav-link" href="/info">Datos</a>  
         </li>
         <li class="nav-item mx-5 my-2">
           <a class="nav-link" href="/chat">Chats</a>

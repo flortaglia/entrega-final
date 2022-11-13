@@ -57,3 +57,9 @@
 [2022-11-13T17:54:37.034Z] - warn : Método: GET, URL: /carrito/productos/636d41824171eba9bcb1fbac inexistente
 [2022-11-13T17:55:27.168Z] - warn : Método: GET, URL: /carrito/productos/636d41824171eba9bcb1fbac inexistente
 [2022-11-13T17:57:29.287Z] - warn : Método: GET, URL: /favicon.ico inexistente
+[2022-11-13T20:02:21.755Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/pizzas inexistente
+[2022-11-13T20:03:25.033Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/empanadas inexistente
+[2022-11-13T20:03:41.822Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/pizzas inexistente
+[2022-11-13T20:04:30.712Z] - warn : Método: GET, URL: /pizzas inexistente
+[2022-11-13T20:06:05.350Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/pizzas inexistente
+[2022-11-13T20:28:02.598Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/empanadas inexistente
