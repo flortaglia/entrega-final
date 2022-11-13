@@ -1,4 +1,5 @@
 require('dotenv').config()
+const config = require('./config.js');
 const express = require('express')
 const path = require( 'path') 
 const bodyParser = require('body-parser');
@@ -75,11 +76,11 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   app.use("/", mensajesRouter.start());
   app.use("/", OrderRouter.start());
   
-  expressServer = app.listen(process.env.PORT || 8080, (err) => {
+  expressServer = app.listen(config.serverPort, (err) => {
       if(err) {
           console.log(`Se produjo un error al iniciar el servidor: ${err}`)
       } else {
-          console.log(`Servidor escuchando puerto: ${process.env.PORT ||8080}`)
+          console.log(`Servidor escuchando puerto: ${config.serverPort}`)
       }
   })
  
@@ -101,6 +102,6 @@ configChatMongo(expressServer)
 
 app.use((req,res,next)=>{
   const { url, method } = req;
-  logger.warn(`Método ${method} URL ${url} inexistente`);
-  res.sendStatus(404);
+  logger.warn(`Método: ${method}, URL: ${url} inexistente`);
+  res.status(404).send(`Método: ${method}, URL: ${url} inexistente`);
 } )

@@ -7,3 +7,7 @@
 [2022-11-12T16:49:07.111Z] - warn : Método POST URL /login inexistente
 [2022-11-12T16:49:10.510Z] - warn : Método POST URL /login inexistente
 [2022-11-13T00:26:36.691Z] - warn : Método GET URL /ordenes inexistente
+[2022-11-13T12:57:40.381Z] - warn : Método GET URL /favicon.ico inexistente
+[2022-11-13T13:42:17.020Z] - warn : Método GET URL /signupgdfgfdgdf inexistente
+[2022-11-13T13:43:14.560Z] - warn : Método GET URL /signupgdfgfdgdf inexistente
+[2022-11-13T13:43:45.458Z] - warn : Método: GET, URL: /signupgdfgfdgdf inexistente

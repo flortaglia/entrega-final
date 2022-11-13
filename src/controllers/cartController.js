@@ -3,7 +3,7 @@ const CarritoDaoFactory = require ('../classes/carrito/CarritoDaoFactory.class.j
 const DAO = CarritoDaoFactory.getDao()
 const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.class.js') 
 const DAOProduct = ProductoDaoFactory.getDao()
-const swal = require('sweetalert')
+
 
 class CarritoController{
    
@@ -14,13 +14,13 @@ class CarritoController{
             const username = req.user.username
             const address = req.user.address
             await DAO.addProductService(cantidad,id_prod,username, address)
-            // swal("Se agrego al carrito");
-            res.redirect('/productos')
+            
+            res.json({success:true})
         } catch (error) {
             res.status(error.errorCode).send(error.message);
         }  
         
-    }   
+    }     
     async getUserCart(req, res){ 
         try {
             const username = req.user.username

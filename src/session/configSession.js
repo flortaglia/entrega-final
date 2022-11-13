@@ -1,19 +1,21 @@
 const MongoStore = require( "connect-mongo");
 const session = require( "express-session");
-const dbConfig = require('../config.js');
+const config = require('../config.js');
 const mongoOptions = { useNewUrlParser: true, useUnifiedTopology: true };
+
 module.exports = session({
     store: MongoStore.create({
-      mongoUrl: dbConfig.url,
+      mongoUrl: config.url,
       mongoOptions,
-      ttl:600, //time to live sec session CHANGE TO =>10MIN 10*60
+      ttl:config.sessionTtl, //time to live sec session CHANGE TO =>10MIN 10*60 -expiry time of the session
       autoRemove: 'native' //session expires the doc in mongodb will be removed
     }),
-    secret: dbConfig.SECRET,
+    secret: config.SECRET,
     resave: false,
     saveUninitialized: false,
     rolling: true, // Re initialization of the time in every request
     cookie: {
-      maxAge: 300000, //CHANGE TO 5 MIN=> 1*1000*60
+      maxAge: config.sessionTtl*1000, //CHANGE TO 5 MIN=> 1*1000*60 = 1min
     },
   })
+  // req.session.cookie.maxAge

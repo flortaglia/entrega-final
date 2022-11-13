@@ -112,6 +112,8 @@ socket.on('serverSend:Products', productos=>{
       renderProducts(productos)
 });
 
+
+
 // async function renderProducts() {
 //     try {
 //         let productsArray=[]
