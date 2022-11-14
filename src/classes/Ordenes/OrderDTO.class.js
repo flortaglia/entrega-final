@@ -4,7 +4,7 @@ class OrdenesDTO {
         this.username= data.username
         this.address = data.address
         this.timestamp= data.timestamp
-        this.state= state
+        this.status= data.status
         this.productos =data.productos 
     }
 }

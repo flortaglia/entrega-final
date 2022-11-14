@@ -1,0 +1,18 @@
+<!-- Inicio CHAT -->
+    <!-- FORM CHAT -->
+    <div class="container">
+        <h3 style="margin:2rem 0;"> Contáctenos:</h3>
+        <form id="formChat" style="margin-top: 2rem;">
+            mail: <input id="idUsuario" type="email" name="Id" class="input-group mb-3" placeholder="Ingrese su mail" value="PP@gmail.com" required>
+            text: <input id="messageInput" type="text" name="message" class="input-group mb-3" placeholder="mensaje del usuario" value="Hola!!" required>
+            
+            <input type="submit" value="Enviar Mensaje"  class="btn btn-primary" style="margin:2rem 0;">
+            <!-- <input type="submit" value="Finalizar Charla"  class="btn btn-primary" style="margin:2rem 0;"> -->
+        </form>
+    </div> 
+    <!-- VISTA CHAT -->
+    <div class="container" id="totalMessages"></div>
+    <!-- Fin CHAT -->
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="./client.js"></script>

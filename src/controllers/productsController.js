@@ -15,7 +15,6 @@ class ProductoController{
         try {
             const category = req.params.category
             const verProductos = await DAO.getByCategory(category)
-           
             if(!verProductos){return res.status(404).json({error: "Categoria de producto no encontrada"})}
             res.render('productos.hbs',{verProductos})
             // res.status(200).json(verProductosCategory)
@@ -39,7 +38,7 @@ class ProductoController{
     async getProductoId (req, res) {
         try {
             const id = req.params.id
-            console.log('id', id)
+            console.log('id getProductoId ', id)
             const elemento = await DAO.getById(id)
             //  console.log('elemento', elemento)
             if(!elemento){return res.status(404).json({error: "Producto no encontrado"})}

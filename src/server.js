@@ -1,4 +1,5 @@
 require('dotenv').config()
+const config = require('./config.js');
 const express = require('express')
 const path = require( 'path') 
 const bodyParser = require('body-parser');
@@ -18,6 +19,12 @@ const RouterCarrito = require( "./routes/carrito.route.js");
 const carritoRouter = new RouterCarrito()
 const RouterProducto = require ("./routes/producto.route.js")
 const productoRouter = new RouterProducto()
+const RouterChat = require ("./routes/chat.route.js")
+const mensajesRouter = new RouterChat()
+const RouterOrder = require( "./routes/order.route.js");
+const OrderRouter= new RouterOrder()
+const RouterConfig = require( "./routes/config.datos.route.js");
+const ConfigRouter= new RouterConfig()
 
 const configSession = require( "./session/configSession.js");
 const { engine } = require('express-handlebars')
@@ -68,12 +75,15 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   app.use('/carrito', carritoRouter.start());
   app.use('/productos',productoRouter.start())
   app.use("/users", usuarioRouterRest.start());
+  app.use("/", mensajesRouter.start());
+  app.use("/", OrderRouter.start());
+  app.use("/", ConfigRouter.start());
   
-  expressServer = app.listen(process.env.PORT || 8080, (err) => {
+  expressServer = app.listen(config.serverPort, (err) => {
       if(err) {
           console.log(`Se produjo un error al iniciar el servidor: ${err}`)
       } else {
-          console.log(`Servidor escuchando puerto: ${process.env.PORT ||8080}`)
+          console.log(`Servidor escuchando puerto: ${config.serverPort}`)
       }
   })
  
@@ -95,6 +105,6 @@ configChatMongo(expressServer)
 
 app.use((req,res,next)=>{
   const { url, method } = req;
-  logger.warn(`Método ${method} URL ${url} inexistente`);
-  res.sendStatus(404);
+  logger.warn(`Método: ${method}, URL: ${url} inexistente`);
+  res.status(404).send(`Método: ${method}, URL: ${url} inexistente`);
 } )

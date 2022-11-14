@@ -8,6 +8,7 @@ class UsuarioController{
     res.sendFile(path.join(__dirname, ".././public/home.html"));
   }
   async getHomeAdmin(req,res){
+      // res.render('chats.hbs');
       res.sendFile(path.join(__dirname, ".././public/index.html"));
   }
   //LOGIN
@@ -15,7 +16,7 @@ class UsuarioController{
       if(req.isAuthenticated()){
         // console.log('estoy logueadooooo')
         let user= req.user
-        res.redirect('/')
+        res.redirect('/productos')
       }else{
         // console.log('usuario no logueado')
         res.sendFile(path.join(__dirname, ".././public/login.html")); //aca si podría un res.render
@@ -65,7 +66,7 @@ class UsuarioController{
         if (err)  return next(err); 
         res.send(`<h1>Hasta luego ${user}</h1>
           <script type="text/javascript">
-          setTimeout(function(){ location.href = '/login'},2000)
+          setTimeout(function(){ location.href = '/'},2000)
           </script>`
         )
       })

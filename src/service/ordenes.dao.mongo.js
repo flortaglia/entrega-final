@@ -21,16 +21,18 @@ class OrdenesDaoMongo extends DAO {
     }
     async getById(id)  {
         try {
-            const doc = await this.collection.findOne({ _id: id }, { __V: 0 });
-            return doc;
+            const orden = await this.collection.findOne({ _id: id }, { __V: 0 });
+            // return doc;
+            return new OrdenesDTO(orden);
         } catch (error) {
             throw new CustomError(500, error); 
         } 
     }
     async getAll(){
         try {
-            const doc = await this.collection.find({ });
-            return doc;
+            const ordenes = await this.collection.find({ });
+            const result = ordenes.map((orden)=>(new OrdenesDTO(orden)))
+            return result;
         } catch (error) {
             throw new CustomError(500, error); 
         }
@@ -42,10 +44,10 @@ class OrdenesDaoMongo extends DAO {
         }   
         return lastOrder.orderNumber + 1
     }
-    async create(carrito){
+    async create(carrito){  
         try {
             console.log('carrito.productos', carrito.productos)
-            const doc = new this.collection({
+            const orden = new this.collection({
                 orderNumber:await this.nextOrderNumber(),
                 username:carrito.username,
                 address:carrito.address,
@@ -54,36 +56,20 @@ class OrdenesDaoMongo extends DAO {
                 status:"generada",
                 productos: carrito.productos,
             })
-            await doc.save() 
-            return doc
+            await orden.save() 
+            return new OrdenesDTO(orden);
         } catch (error) {
             throw new CustomError(500, error); 
         }       
     }
     async getByusername(username){ 
         try {
-            const doc = await this.collection.findOne({ username: username});
-            return doc;
+            const orden = await this.collection.findOne({ username: username});
+            return new OrdenesDTO(orden);
         } catch (error) {
             throw new CustomError(500, error);
         }
     }
-    
-
-    ////cambiar tomar de producto los datosssssss/////ordenes?????????????????
-    // async cartCheckoutService(user){
-    //     try {
-    //         let carrito = await this.getByusername(user.username)  
-    //         const productos = carrito.productos
-    //         const message= carrito.productos.map(producto=>
-    //             `PRODUCTO: ${producto.title} PRECIO UNIT.: ${producto.price} CANTIDAD: ${producto.cantidad}`  
-    //         )
-    //         await this.deleteById(carrito._id)
-    //         return productos ///a donde va 
-    //     } catch (error) {
-    //         throw new CustomError(500, error);
-    //     }
-    // }
 
     static getInstance() {
   

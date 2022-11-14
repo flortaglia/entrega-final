@@ -8,7 +8,7 @@ class RouterCarrito{
     }
 
     start(){
-        router.get('/productos/:id', this.controller.addProduct); 
+        router.get('/productos/:id/:quantity', this.controller.addProduct);
         router.get('/deleteproducto/:id', this.controller.deleteProductFromCart)
         router.get('/', this.controller.getUserCart)
         router.get('/checkout', this.controller.cartCheckout)

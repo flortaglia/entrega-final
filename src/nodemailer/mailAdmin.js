@@ -1,6 +1,5 @@
 const { createTransport } = require ('nodemailer');
-
-const TEST_MAIL = process.env.MAIL
+const config = require('../config.js');
 
 module.exports = async function main(subject, html){
 
@@ -8,14 +7,14 @@ module.exports = async function main(subject, html){
         service: 'gmail',
         port: 587,
         auth: {
-            user: "flortagliaferro@gmail.com",
-            pass:process.env.PASS
+            user: config.mail.fromAndTo,
+            pass:config.mail.password
             
         }
     });
    const mailOptions = {
     from: 'Servidor Node.js',
-    to: TEST_MAIL,
+    to: config.mail.fromAndTo,
     subject: subject,
     html: html,
     // attachments: [

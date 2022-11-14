@@ -2,43 +2,27 @@
 // Lado cliente
 const socket = io() 
 //Fecha
-
 const tiempoTranscurrido = Date.now()
 const hoy = new Date(tiempoTranscurrido)
 const fecha= hoy.toLocaleDateString()
 const tiempo = new Date()
 const argHora=tiempo.toLocaleTimeString('it-IT')
 
-// const hora= hoy.getHours()
-// const horafinal= hora.toString().padStart(2,"0")
-
-
 //CHAT 
 const formChat = document.querySelector('#formChat')
-const id = document.querySelector('#idUsuario') //mail
-const nameInput = document.querySelector('#nameInput')
-const surnameInput = document.querySelector('#surnameInput')
-// const ageInput = document.querySelector('#ageInput')
-const aliasInput = document.querySelector('#aliasInput') 
-const avatarInput = document.querySelector('#avatarInput') 
+const id = document.querySelector('#idUsuario') //mail 
 const messageInput = document.querySelector('#messageInput')
-
-
+//VISTA CHAT
 const totalMessages = document.querySelector('#totalMessages')
 
 // EMITO MENSAJES AL SERVIDOR
 function sendMessage() {
     try {
         const mail = id.value
-        const name = nameInput.value
-        const surname = surnameInput.value
-        // const age = ageInput.value
-        const alias = aliasInput.value
-        const avatar = avatarInput.value
         const message = messageInput.value
         const tiempochat = `${fecha}, ${argHora}`
         console.log(tiempochat)
-        socket.emit('client:message', { mail,name,surname,age,alias,avatar,message, tiempochat})
+        socket.emit('client:message', {mail,message,tiempochat})
         // socket.emit('client:message', { mail, tiempochat, message }) //emito el mensaje al servidor
     } catch(error) {
         console.log(`Hubo un error ${error}`)
@@ -70,6 +54,8 @@ formChat.addEventListener('submit', event => {
 
 // CAPTURO MENSAJES EMITIDOS AL SERVIDOR
 socket.on('serverSend:message', renderMessages);
+
+
 // 2  PARTE PRODUCTOS
 const formProducts = document.querySelector('#formProducts')
 const titleInput = document.querySelector('#title')
@@ -79,8 +65,6 @@ const thumbnailInput = document.querySelector('#thumbnail')
 const productosInsert = document.querySelector('#productosTabla')
 
 // EMITO Productos AL SERVIDOR
-
-
 function sendProduct() {
     try {
         const title = titleInput.value
@@ -127,6 +111,8 @@ formProducts.addEventListener('submit', event => {
 socket.on('serverSend:Products', productos=>{
       renderProducts(productos)
 });
+
+
 
 // async function renderProducts() {
 //     try {

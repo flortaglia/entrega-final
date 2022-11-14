@@ -1,12 +1,10 @@
 const { Server } = require( "socket.io");
-const messages= []
-const productos= []
-const {escribir} = require ('./write.js')
 const logger = require('../utils/logger.js')
 const ChatDaoFactory = require ('../classes/chat/ChatDaoFactory.class.js') 
 const DAO = ChatDaoFactory.getDao()
 const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.class.js') 
 const ProductoDAO = ProductoDaoFactory.getDao()
+
 // LADO SERVIDOR
 async function configChatMongo(expressServer){
     const io = new Server(expressServer)
@@ -40,9 +38,8 @@ async function configChatMongo(expressServer){
                 //RECIBO mensaje y lo anido
                 // escribir(messages)
                 try {
-                    await DAO.create(messageInfo)
-                    chatmessages = await DAO.getAll()
-                    
+                    await DAO.create({...messageInfo,type:"usuario"})
+                    chatmessages = await DAO.getAll()    
                 } catch (error) {
                     console.log(error)
                 }
