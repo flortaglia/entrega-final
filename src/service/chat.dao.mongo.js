@@ -41,7 +41,6 @@ class ChatDaoMongo extends DAO {
   async create(messagechat){
     try {
       const chat = new this.collection(messagechat)
-      // { mail,type, tiempochat,message}
       await chat.save() 
       return new chatDTO(chat)
     } catch (error) {

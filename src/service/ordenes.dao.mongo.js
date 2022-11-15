@@ -22,7 +22,6 @@ class OrdenesDaoMongo extends DAO {
     async getById(id)  {
         try {
             const orden = await this.collection.findOne({ _id: id }, { __V: 0 });
-            // return doc;
             return new OrdenesDTO(orden);
         } catch (error) {
             throw new CustomError(500, error); 

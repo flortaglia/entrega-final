@@ -68,3 +68,4 @@
 [2022-11-15T12:53:02.820Z] - error : error
 [2022-11-15T13:31:54.825Z] - error : error
 [2022-11-15T13:42:03.058Z] - error : Cast to ObjectId failed for value "8" (type string) at path "_id" for model "productos"
+[2022-11-15T20:54:56.871Z] - warn : Método: GET, URL: /INDEX inexistente

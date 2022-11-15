@@ -43,7 +43,6 @@ class UsuarioDaoMongo extends DAO {
         try {
             const usurios = await this.collection.find({ });
             const result = usurios.map((usuario)=>(new UsuarioDTO(usuario)))
-            // console.log('product.dao.mogo getAll', result)
             return result;
         } catch (error) {
             throw new CustomError(500, error);
@@ -52,7 +51,7 @@ class UsuarioDaoMongo extends DAO {
     async create(newUser){ 
         try {
             // username, password, nombre, direccion, edad, telefono,avatar
-            const usuario = new this.collection(newUser)////
+            const usuario = new this.collection(newUser)
             await usuario.save()           
             return new UsuarioDTOPwd(usuario)
         } catch (error) {

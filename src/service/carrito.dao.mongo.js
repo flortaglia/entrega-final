@@ -1,4 +1,3 @@
-// const {CarritoDao} = require ('../daos/index.js') 
 const CarritoDTO = require("../classes/carrito/CarritoDTO.class.js")  ;
 const CustomError = require ("../classes/CustomError.class.js") ;
 const DAO = require ("../classes/Dao.class.js") ;
@@ -27,7 +26,7 @@ class CarritoDaoMongo extends DAO {
     async getById(id)  {
         try {
             const carrito= await this.collection.findOne({ _id: id }, { __V: 0 });
-            return new CarritoDTO(carrito);//cambie a DTO
+            return new CarritoDTO(carrito);
         } catch (error) {
             throw new CustomError(500, error); 
         } 
@@ -89,23 +88,10 @@ class CarritoDaoMongo extends DAO {
         }
     }
 
-    // async getUserCartService(username){ 
-    //     try {
-    //         let carrito = await this.getByusername(username)
-    //         return carrito 
-    //     } catch (error) {
-    //         throw new CustomError(500, error);
-    //     }
-    // }
-
     async cartCheckoutService(user){
         try {
             let carrito = await this.getByusername(user.username)  
             let order = await DAOorder.create(carrito)
-            // const message= carrito.productos.map(producto=>
-            //     `PRODUCTO: ${producto.title} PRECIO UNIT.: ${producto.price} CANTIDAD: ${producto.cantidad}`  
-            // )
-            const recibido = `El Pedido se encuentra en proceso. Gracias por su compra` ///////////
             await this.deleteById(carrito._id)
             return order 
         } catch (error) {
@@ -134,11 +120,3 @@ class CarritoDaoMongo extends DAO {
 
 
 module.exports = CarritoDaoMongo
-
-// {
-//     addProductService,
-//     getUserCartService,
-//     deleteProductFromCartService,
-//     cartCheckoutService
-
-// }

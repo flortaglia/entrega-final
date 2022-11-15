@@ -37,6 +37,7 @@ class ProductoDaoMongo extends DAO {
       return new ProductoDTO(producto);
     } catch (error) {
       throw error
+      //PARA PRUEBA DE EXPRESS ERROR HANDLING
       // new CustomError(500, error);
     }  
   }
@@ -45,7 +46,6 @@ class ProductoDaoMongo extends DAO {
     try {
       const productos = await this.collection.find({ });
       const result = productos.map((producto)=>(new ProductoDTO(producto)))
-      // console.log('product.dao.mogo getAll', result)
       return result;
     } catch (error) {
       throw new CustomError(500, error);
@@ -82,16 +82,3 @@ class ProductoDaoMongo extends DAO {
 }
 
 module.exports = ProductoDaoMongo;
-
-
-
-
-
-// const getProductosService = async () => {
-//     const verProductos = await ProductoDao.getAll()
-//     return  verProductos
-// }
-
-// module.exports = {
-//     getProductosService
-// }
