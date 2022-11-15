@@ -35,7 +35,7 @@ class ProductoController{
     
     }
 
-    async getProductoId (req, res) {
+    async getProductoId (req, res,next) {
         try {
             const id = req.params.id
             console.log('id getProductoId ', id)
@@ -46,7 +46,8 @@ class ProductoController{
             res.render('productoById.hbs',{elemento})
             // res.status(200).json(elemento)
         } catch (error) {
-            res.status(error.errorCode).send(error.message); 
+            next(error)
+            // res.status(error.errorCode).send(error.message); 
         }
     
     }
