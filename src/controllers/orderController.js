@@ -5,7 +5,7 @@ class OrdenesController{
     async getOrdenes(req, res){
         try {
             const verOrdenes = await DAO.getAll()
-            // res.render('ordenes.hbs',{verOrdenes}) //no llegue ha realizar
+            // res.render('ordenes.hbs',{verOrdenes}) //no llegue ha realizarlo
             res.status(200).json(verOrdenes)
         } catch (error) {
             res.status(error.errorCode).send(error.message); 
