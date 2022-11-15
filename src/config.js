@@ -13,7 +13,7 @@ module.exports = {
 		fromAndTo:process.env.MAIL,
 		password:process.env.PASS
 	},
-	serverPort:process.env.PORT || 8080,
+	PORT:process.env.PORT || 8080,
 	
 }
 ///////////////////firebase////////////////////

@@ -79,11 +79,11 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   app.use("/", OrderRouter.start());
   app.use("/", ConfigRouter.start());
   
-  expressServer = app.listen(config.serverPort, (err) => {
+  expressServer = app.listen(config.PORT, (err) => {
       if(err) {
           console.log(`Se produjo un error al iniciar el servidor: ${err}`)
       } else {
-          console.log(`Servidor escuchando puerto: ${config.serverPort}`)
+          console.log(`Servidor escuchando puerto: ${config.PORT}`)
       }
   })
  
