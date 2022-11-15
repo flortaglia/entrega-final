@@ -115,7 +115,12 @@ app.use((req,res,next)=>{
 } )
 
 // General Error
+//ruta de prueba de la App para que funcione /productos/idInexistente
+//para eso de cambio getById en service (product.dao.mongo) y getProductoId 
+//en controller (productsController)
 app.use((err,req,res,next)=>{
   logger.error(err);
-  res.status(500).render("error.hbs", {error: err, message: 'Ops!Ocurrio un error. Prueba otra ruta'});
+  res.status(500).render("error.hbs", 
+    {error: err, message: 'Ops!Ocurrio un error. Prueba otra ruta'}
+  );
 })

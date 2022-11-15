@@ -36,7 +36,8 @@ class ProductoDaoMongo extends DAO {
       const producto = await this.collection.findOne({ _id: id }, { __V: 0 });
       return new ProductoDTO(producto);
     } catch (error) {
-      throw new CustomError(500, error);
+      throw error
+      // new CustomError(500, error);
     }  
   }
 
