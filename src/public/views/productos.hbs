@@ -11,7 +11,7 @@
                     <h4 class="card-text">{{this.price}}</h4>
                     <input id={{this._id}} type="number" className='styleInput' 
                         max={{this.stock}} min="1" 
-                       value="1">  
+                    value="1">  
 
                     <a  class="btn btn-primary addProduct" href="/carrito/productos/{{this._id}}" >agregar</a>
                 </div>
@@ -25,7 +25,7 @@
 <script src="/js/carrito.js"></script>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function(event) { 
-        new Carrito();
+        new Carrito(); 
     });   
 </script> 
 

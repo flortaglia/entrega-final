@@ -7,14 +7,13 @@ const cookieParser = require( "cookie-parser");
 const {configChatMongo} = require ('./socket/chat.mongo.js')
 const logger = require('./utils/logger.js')
 const passport = require( 'passport');
-const yargs = require('yargs/yargs')(process.argv.slice(2)) //libreria YARGS
+const yargs = require('yargs/yargs')(process.argv.slice(2)) 
 const initPassport = require( './passport/init.js');
-//IMPORTO ROUTERS  CL28
+//IMPORTO ROUTERS  
 const RouterUsuario = require( "./routes/usuario.route.js");
 const usuarioRouter = new RouterUsuario()
 const RouterUsuarioRest = require( "./routes/usuario.rest.route.js");
 const usuarioRouterRest = new RouterUsuarioRest()
-
 const RouterCarrito = require( "./routes/carrito.route.js");
 const carritoRouter = new RouterCarrito()
 const RouterProducto = require ("./routes/producto.route.js")
@@ -42,11 +41,11 @@ const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-ac
 const cluster = require("cluster");
 const os = require("os");
 const cpus= os.cpus() //creo workers
-//PUERTO CON YARGS  CL30
+//PUERTO CON YARGS 
 const args = yargs
-        .alias({p:'puerto', m: 'modo'})
-        .default({puerto:8080, modo:'fork'}) //variable modo agregada cluster  o fork (x default)
-        .argv
+      .alias({p:'puerto', m: 'modo'})
+      .default({puerto:8080, modo:'fork'}) 
+      .argv
 console.log('args.modo', args.modo)
 app.use(configSession);
 //Inicializo PASSPORT
@@ -94,11 +93,9 @@ if (args.modo =="cluster" && cluster.isPrimary) {
 app.use(express.static(__dirname + '/public'))
 app.engine('hbs', 
     engine({
-        extname: '.hbs',
-        defaultLayout: path.join(__dirname, '/public/views/layout/main.hbs'),
-        // layoutsDir: path.join(__dirname, '/public/views/layouts'),
-        // partialsDir: path.join(__dirname, '/public/views/partials')
-        handlebars: allowInsecurePrototypeAccess(Handlebars)
+      extname: '.hbs',
+      defaultLayout: path.join(__dirname, '/public/views/layout/main.hbs'),
+      handlebars: allowInsecurePrototypeAccess(Handlebars)
     })
 )
   

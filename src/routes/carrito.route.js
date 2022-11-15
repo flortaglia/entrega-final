@@ -18,14 +18,3 @@ class RouterCarrito{
 }
 
 module.exports = RouterCarrito
-
-// router.get('/productos', mostrarForm) 
-
-// router.post('/carrito', postCarrito) 
-// router.delete('/carrito/:id', deleteCarrito )
-// router.get('/carrito', listarCarritos)
-// router.get('/carrito/:id/productos', verCarrito)
-// router.delete('/carrito/deleteproducto', deleteProductFromCart) xq x ahora uso link
-
-
-

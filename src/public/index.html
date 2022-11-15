@@ -38,9 +38,7 @@
                 </tr>
             </thead>
             <tbody id="productosTabla" >
-                
-
-                
+   
             </tbody> 
         </table>
     </div>
@@ -51,10 +49,6 @@
         <h3 style="margin:2rem 0;"> Contáctenos:</h3>
         <form id="formChat" style="margin-top: 2rem;">
             mail: <input id="idUsuario" type="email" name="Id" class="input-group mb-3" placeholder="Ingrese su mail" value="PP@gmail.com" required>
-            <!-- nombre: <input id="nameInput" type="text" name="name" class="input-group mb-3" placeholder="nombre del usuario" value="Pepe" required>
-            apellido: <input id="surnameInput" type="text" name="surname" class="input-group mb-3" placeholder="apellido del usuario" value="perz" required>
-            alias: <input id="aliasInput" type="text" name="alias" class="input-group mb-3" placeholder="alias del usuario" value="pp" required>
-            avatar: <input id="avatarInput" type="url" name="avatar" class="input-group mb-3" placeholder="url avatar (foto, logo) del usuario" value="https://buenavibra.es/wp-content/uploads/2017/08/francella-2.jpg" required> -->
             text: <input id="messageInput" type="text" name="message" class="input-group mb-3" placeholder="mensaje del usuario" value="Hola!!" required>
             
             <input type="submit" value="Enviar Mensaje"  class="btn btn-primary" style="margin:2rem 0;">
@@ -71,35 +65,6 @@
     <script src="client.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/normalizr@3.6.1/dist/normalizr.browser.min.js"></script>
-    <!-- <script type="text/javascript">
-        $(document).ready(renderProducts())
-        $(document).ready(()=>{
-            const authorSchema = new normalizr.schema.Entity('authors',{},{idAttribute:'mail'})
-            const commentSchema = new normalizr.schema.Entity(
-                'comments',
-                {author: authorSchema},
-                { idAttribute: "id" }
-            )
-    
-            const chatSchema = new normalizr.schema.Entity(
-            'chats', 
-            { comments: [commentSchema]},
-            { idAttribute: "id" }
-            );
-            
-            socket.on('serverSend:message', normalizedChat=>{
-                
-                const denormalizedChat = normalizr.denormalize(normalizedChat.result, chatSchema, normalizedChat.entities);
-               
-                renderMessages(denormalizedChat.comments)
-               
-                const percentil =((JSON.stringify(normalizedChat).length)/(JSON.stringify(denormalizedChat).length))*100
-                const percentilDiv = document.querySelector('#percentil')
-                percentilDiv.innerHTML =percentil
-            
-            });
-        })
-        
-    </script> -->
+   
 </body>
 </html>

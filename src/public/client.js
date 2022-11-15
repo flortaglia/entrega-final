@@ -23,7 +23,6 @@ function sendMessage() {
         const tiempochat = `${fecha}, ${argHora}`
         console.log(tiempochat)
         socket.emit('client:message', {mail,message,tiempochat})
-        // socket.emit('client:message', { mail, tiempochat, message }) //emito el mensaje al servidor
     } catch(error) {
         console.log(`Hubo un error ${error}`)
     }
@@ -56,7 +55,7 @@ formChat.addEventListener('submit', event => {
 socket.on('serverSend:message', renderMessages);
 
 
-// 2  PARTE PRODUCTOS
+// SEGUNDA  PARTE PRODUCTOS
 const formProducts = document.querySelector('#formProducts')
 const titleInput = document.querySelector('#title')
 const priceInput = document.querySelector('#price')
@@ -71,7 +70,7 @@ function sendProduct() {
         const price = priceInput.value
         const thumbnail = thumbnailInput.value
     
-        socket.emit('client:enterProduct', { title, price, thumbnail }) //emito el mensaje al servidor
+        socket.emit('client:enterProduct', { title, price, thumbnail }) 
     } catch(error) {
         console.log(`Hubo un error ${error}`)
     }
@@ -79,9 +78,9 @@ function sendProduct() {
 //RENDER Productos E INSERTO HTML
 async function renderProducts (productsArray) {
     try {
-        const response = await fetch('/plantilla.hbs') //traemos la plantilla
+        const response = await fetch('/plantilla.hbs') 
         
-        const plantilla = await response.text() //obtenemos el texto de la misma
+        const plantilla = await response.text() 
         
         if (productsArray.length>0) {
             document.querySelector('#noProducts').innerHTML=""  
@@ -111,64 +110,3 @@ formProducts.addEventListener('submit', event => {
 socket.on('serverSend:Products', productos=>{
       renderProducts(productos)
 });
-
-
-
-// async function renderProducts() {
-//     try {
-//         let productsArray=[]
-
-//          fetch('api-test')
-//          .then((product)=>product.json())
-//          .then((json)=> productsArray = json )
-      
-//         // console.log('productsArray',productsArray)
-//         const response = await fetch('/plantilla.hbs') //traemos la plantilla
-        
-        
-//         const plantilla = await response.text() //obtenemos el texto de la misma
-        
-//         if (productsArray.length>0) {
-//             document.querySelector('#noProducts').innerHTML=""  
-//             document.querySelector('#productosTabla').innerHTML = ""
-//             productsArray.forEach(product => {
-//                 const template = Handlebars.compile(plantilla)
-//                 const filled = template(product) 
-//                 document.querySelector('#productosTabla').innerHTML += filled 
-//             }); 
-//         }else{
-//             document.querySelector('#noProducts').innerHTML = ("<h4>No hay ninguna producto :(</h4>")
-//         }
-        
-//     } catch(error) {
-//         console.log(`Hubo un error ${error}`)
-//     }
-// }
-// renderProducts()
-// function loadProducts(){
-//     products = $.get(9, (products) => {
-//         renderProducts(products)
-//     })
-// }
-
-//Bienvenida MENSAJE LOGIN
-
-// async function insertUser(){
-//     let userName
-//     fetch('/user-info')
-//      .then(user=>user.json())
-//      .then(json=>userName= json)
-
-//     // console.log('userName', userName)
-//     // console.log(res.body)
-//     // const data= await res.json()
-//     // document.querySelector('#Login').innerHTML= data.username
-//     // console.log('userName', response.json)
-//     const response = await fetch('/logIn.hbs')
-//     const logInPlantilla= await response.text()
-//     const template = Handlebars.compile(logInPlantilla)
-//     const filled = template(userName) 
-//     document.querySelector('#Login').innerHTML= filled 
-
-// }
-//  insertUser()

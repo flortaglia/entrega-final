@@ -7,7 +7,6 @@ class Carrito{
         addProductBtms.forEach(btn => {
             btn.addEventListener("click",this.addProduct, true);
         })
-        
     }
     addProduct(event) {
         event.preventDefault();

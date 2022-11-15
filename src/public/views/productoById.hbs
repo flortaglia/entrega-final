@@ -5,13 +5,13 @@
     <p class="card-text">{{elemento.description}}</p>
     <h4 class="card-text">{{elemento.price}}</h4>
     <input id={{elemento._id}} type="number" className='styleInput' 
-        max={{elemento.stock}} min="1" value="1">  
+    max={{elemento.stock}} min="1" value="1">  
     <a class="btn btn-primary addProduct" href="/carrito/productos/{{elemento._id}}">agregar</a>
   </div>
 </div>
 <script src="/js/carrito.js"></script>
 <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function(event) { 
-        new Carrito();
-    });   
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    new Carrito();
+  });   
 </script>    

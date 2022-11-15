@@ -4,7 +4,7 @@ const DAO = UsuarioDaoFactory.getDao()
 const bCrypt  =require( 'bcrypt');
 const CustomError = require ("../classes/CustomError.class.js") ;
 
-// Estrategia de registro/suscripción....REGISTER
+// Estrategia de registro
 module.exports = function (passport){
 
 	passport.use('signup', new LocalStrategy({
@@ -12,10 +12,7 @@ module.exports = function (passport){
         },
         async (req, username, password, done)=> {
             try {
-                // find a user in Mongo with provided username
-                // llamar a UserDao. getByUsername
                 const existingUser = await DAO.getByUsername(username)
-                //User.findOne({ 'username' :  username } )
                 if (existingUser) {
                     return done("User already exists", false);
                 }
@@ -31,10 +28,9 @@ module.exports = function (passport){
                     admin:"usuario"                   
                     };
                     const createdUser = await DAO.create(newUser)
-                    //User.create(newUser);
                     return done(null, createdUser);
                 }else{
-                    throw new CustomError(500, "Las password no son iguales");//ver de hacer redirect ---ok back
+                    throw new CustomError(500, "Las password no son iguales");
                 }
                 
             } catch (err) {

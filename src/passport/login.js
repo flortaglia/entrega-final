@@ -3,29 +3,22 @@ const UsuarioDaoFactory = require ('../classes/usuario/UsuarioDaoFactory.class.j
 const DAO = UsuarioDaoFactory.getDao()
 var bCrypt = require('bcrypt');
 
-//Estrategia de Login/acceso
+//Estrategia de Login
 module.exports= function (passport){
 
 	passport.use('login', new LocalStrategy({
-        passReqToCallback : true //nos permite acceder al objeto request
+            passReqToCallback : true 
         },
         async (req, username, password, done) => {
-        try { 
-            const user = await DAO.getByUsername(username)
-            // .findOne({ 'username' :  username });
-            // console.log("login::LocalStrategy")
-            // console.log("user", user)
-
-            if (!user || !isValidPassword(user, password)) {
-                return done("Invalid credentials", false);
-            }
-            return done(null, user);
-            
-        } catch (err) {
-            // console.log('error login Strategy',err);
+            try { 
+                const user = await DAO.getByUsername(username)
+                if (!user || !isValidPassword(user, password)) {
+                    return done("Invalid credentials", false);
+                }
+                return done(null, user);  
+            } catch (err) {
                 done(err);
-        }
-        
+            }
         })
     );
 
