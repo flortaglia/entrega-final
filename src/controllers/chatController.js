@@ -16,8 +16,9 @@ class ChatController{
         }
     }
     async getChat(req,res){
-        res.render('chats.hbs');
-        // res.sendFile(path.join(__dirname, ".././public/chat.html"));     ok
+        const username = req.params.mail
+        // res.render('chats.hbs');
+        res.sendFile(path.join(__dirname, ".././public/chat.html"));     
     }
 }
 module.exports = ChatController;

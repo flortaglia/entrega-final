@@ -22,7 +22,9 @@ function sendMessage() {
         const message = messageInput.value
         const tiempochat = `${fecha}, ${argHora}`
         console.log(tiempochat)
-        socket.emit('client:message', {mail,message,tiempochat})
+        const roomName = "pabloRoom"
+        socket.join(roomName);
+        socket.to(roomName).emit('client:message', {mail,message,tiempochat})
         // socket.emit('client:message', { mail, tiempochat, message }) //emito el mensaje al servidor
     } catch(error) {
         console.log(`Hubo un error ${error}`)

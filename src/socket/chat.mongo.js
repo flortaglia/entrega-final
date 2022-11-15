@@ -6,7 +6,7 @@ const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.clas
 const ProductoDAO = ProductoDaoFactory.getDao()
 
 // LADO SERVIDOR
-async function configChatMongo(expressServer){
+async function configChatMongo(expressServer, username){
     const io = new Server(expressServer)
 
     io.on('connection', async socket=>{
@@ -29,9 +29,14 @@ async function configChatMongo(expressServer){
         } catch (error) {
             logger.error('problema productos lado server', error)
         }
+        // const userId = await fetchUserId(socket);
+        
+        socket.join(username);
 
+        // TODO: solor traer los mensajes del usuario (username)
         let chatmessages= await DAO.getAll()
-        io.emit('serverSend:message',chatmessages)
+        // TODO: el canal/evento para enviar todos los mensajes deberia ser distinto al de enviar solo 1
+        io.to(username).emit('serverSend:message',chatmessages)
         try {
             socket.on('client:message', async messageInfo=>{
                 // messages.push(messageInfo) 
@@ -43,8 +48,8 @@ async function configChatMongo(expressServer){
                 } catch (error) {
                     console.log(error)
                 }
-                
-                io.emit('serverSend:message', chatmessages)//EMITO CHATS
+                // TODO: En este caso no enviaria todos los mensajes, sino solo el nuevo
+                io.to(username).emit('serverSend:message', chatmessages)//EMITO CHATS
             })
            
         } catch (error) {

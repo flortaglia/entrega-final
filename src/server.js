@@ -101,7 +101,12 @@ app.engine('hbs',
   
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, './public/views'))
-configChatMongo(expressServer)
+// let username
+// app.use((req,res,next)=>{
+//   username= (req.user.username)
+//   configChatMongo(expressServer, username)
+// } )
+// configChatMongo(expressServer)
 
 app.use((req,res,next)=>{
   const { url, method } = req;

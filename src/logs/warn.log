@@ -63,3 +63,15 @@
 [2022-11-13T20:04:30.712Z] - warn : Método: GET, URL: /pizzas inexistente
 [2022-11-13T20:06:05.350Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/pizzas inexistente
 [2022-11-13T20:28:02.598Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/empanadas inexistente
+[2022-11-13T23:57:42.388Z] - warn : Método: GET, URL: /productos212 inexistente
+[2022-11-15T07:45:18.059Z] - warn : Método: GET, URL: /favicon.ico inexistente
+[2022-11-15T07:46:08.411Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:50:40.603Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:50:53.339Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:51:17.707Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:51:19.632Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:52:24.632Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:52:26.412Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:53:42.053Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:54:02.691Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
+[2022-11-15T07:59:57.032Z] - warn : Método: GET, URL: /socket.io/socket.io.js inexistente
