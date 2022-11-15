@@ -78,6 +78,9 @@ if (args.modo =="cluster" && cluster.isPrimary) {
   app.use("/", mensajesRouter.start());
   app.use("/", OrderRouter.start());
   app.use("/", ConfigRouter.start());
+  app.use("/error", (req, res)=>{
+    throw new Error('error', 'errorMessage')
+  });
   
   expressServer = app.listen(config.PORT, (err) => {
       if(err) {
@@ -103,8 +106,16 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, './public/views'))
 configChatMongo(expressServer)
 
+
+//404
 app.use((req,res,next)=>{
   const { url, method } = req;
   logger.warn(`Método: ${method}, URL: ${url} inexistente`);
   res.status(404).send(`Método: ${method}, URL: ${url} inexistente`);
 } )
+
+// General Error
+app.use((err,req,res,next)=>{
+  logger.error(err);
+  res.status(500).render("error.hbs", {error: err, message: 'Ops!Ocurrio un error. Prueba otra ruta'});
+})

@@ -63,3 +63,6 @@
 [2022-11-13T20:04:30.712Z] - warn : Método: GET, URL: /pizzas inexistente
 [2022-11-13T20:06:05.350Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/pizzas inexistente
 [2022-11-13T20:28:02.598Z] - warn : Método: GET, URL: /productos/categoria/productos/categoria/empanadas inexistente
+[2022-11-15T12:28:13.619Z] - error : baz
+[2022-11-15T12:29:43.471Z] - error : baz
+[2022-11-15T12:53:02.820Z] - error : error
