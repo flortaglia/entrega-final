@@ -1,4 +1,4 @@
-const OrdenesDTO = require("../classes/ordenes/orderDTO.class.js.js")  ;
+const OrdenesDTO = require("../classes/ordenes/orderDTO.class.js")  ;
 const CustomError = require ("../classes/CustomError.class.js") ;
 const DAO = require ("../classes/Dao.class.js") ;
 const MongoClient = require ("../classes/MongoClient.class")
