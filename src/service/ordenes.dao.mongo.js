@@ -63,8 +63,9 @@ class OrdenesDaoMongo extends DAO {
     }
     async getByusername(username){ 
         try {
-            const orden = await this.collection.findOne({ username: username});
-            return new OrdenesDTO(orden);
+            const ordenes = await this.collection.find({ username: username});
+            const result = ordenes.map((orden)=>(new OrdenesDTO(orden)))
+            return result;
         } catch (error) {
             throw new CustomError(500, error);
         }
