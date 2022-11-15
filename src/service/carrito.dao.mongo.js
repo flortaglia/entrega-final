@@ -7,7 +7,7 @@ const Carritos = require ("../models/carrito.model.js")
 
 const ProductoDaoFactory = require ('../classes/producto/ProductoDaoFactory.class.js') 
 const DAOProduct = ProductoDaoFactory.getDao()
-const OrdenesDaoFactory = require ('../classes/ordenes/OrderDaoFactory.class.js') 
+const OrdenesDaoFactory = require ('../classes/ordenes2/OrderDaoFactory.class.js') 
 const DAOorder = OrdenesDaoFactory.getDao()
 let instance
 

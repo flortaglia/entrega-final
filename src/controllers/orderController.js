@@ -1,4 +1,4 @@
-const OrdenesDaoFactory = require ('../classes/ordenes/OrderDaoFactory.class.js') 
+const OrdenesDaoFactory = require ('../classes/ordenes2/OrderDaoFactory.class.js') 
 const DAO = OrdenesDaoFactory.getDao()
 
 class OrdenesController{
