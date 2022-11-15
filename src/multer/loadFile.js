@@ -12,14 +12,4 @@ let fileStorageEngine = multer.diskStorage({
 })
 let upload = multer({storage:fileStorageEngine})
 
-// module.export = router.post('/single', upload.single('image'),
-// (req, res)=>{
-//   // console.log('req- metodo post-login',req.body)
-//   const file=req.file
-//   if(!file){console.log('Please upload file')}
- 
-//   res.send('Ok upload file')
-// }
-// )
-
 module.exports = upload

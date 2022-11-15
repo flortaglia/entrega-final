@@ -5,7 +5,7 @@ class OrdenesController{
     async getOrdenes(req, res){
         try {
             const verOrdenes = await DAO.getAll()
-            // res.render('ordenes.hbs',{verOrdenes})
+            // res.render('ordenes.hbs',{verOrdenes}) //no llegue ha realizar
             res.status(200).json(verOrdenes)
         } catch (error) {
             res.status(error.errorCode).send(error.message); 
@@ -16,7 +16,6 @@ class OrdenesController{
             const username = req.user.username
             let verOrden = await DAO.getByusername(username)
             res.status(200).json(verOrden)
-            // res.render('cart.hbs',{productos})
         } catch (error) {  
             res.status(error.errorCode).send(error.message);
         }

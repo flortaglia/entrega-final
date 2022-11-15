@@ -19,8 +19,7 @@ class CarritoController{
             res.json({success:true})
         } catch (error) {
             res.status(error.errorCode).send(error.message);
-        }  
-          
+        }       
     }     
     async getUserCart(req, res){ 
         try {
@@ -63,9 +62,7 @@ class CarritoController{
             const productos = order.productos
             res.render('mail.hbs',{order,layout: null}, (error, html) => {
                 main(`Nuevo Pedido de ${user.name} - ${user.username}`, html) 
-             })
-        //  this.sendOrderEmail(user, "hola")
-        //  main(`Nuevo Pedido de ${user.name} - ${user.username}`, "hola") 
+            })
             res.redirect('/productos')
         } catch (error) {
             res.status(error.errorCode).send(error.message);
@@ -87,6 +84,7 @@ class CarritoController{
 }
 module.exports = CarritoController
 
+//cuando lo haciamos con JSON - ENTREGAS ANTERIORES
 // const postCarrito = async (req, res)=>{
 //     const elemento = await CarritoDao.newCart(username)
 //     res.json(elemento)

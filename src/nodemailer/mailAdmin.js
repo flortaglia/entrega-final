@@ -12,16 +12,11 @@ module.exports = async function main(subject, html){
             
         }
     });
-   const mailOptions = {
-    from: 'Servidor Node.js',
-    to: config.mail.fromAndTo,
-    subject: subject,
-    html: html,
-    // attachments: [
-    //     {
-    //         path: new URL ("../public/img/carne-empa.webp",import.meta.url).pathname,
-    //     }
-    // ]
+    const mailOptions = {
+        from: 'Servidor Node.js',
+        to: config.mail.fromAndTo,
+        subject: subject,
+        html: html,
     };
 
     transporter.sendMail(mailOptions,(err, info)=>{
@@ -30,8 +25,7 @@ module.exports = async function main(subject, html){
         } else {
             console.log('Email sent: ' + info.response);
         }
-})
-
+    })
 }
 
 

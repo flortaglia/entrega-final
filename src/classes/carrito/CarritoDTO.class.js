@@ -4,7 +4,7 @@ class CarritoDTO {
         this.username= data.username
         this.address = data.address
         this.timestamp= data.timestamp
-        this.productos =data.productos  ////quantity.....
+        this.productos =data.productos  
     }
 }
 module.exports = CarritoDTO;  

@@ -5,7 +5,6 @@ class UsuarioControllerRest{
     async getUsuarios(req, res){
         try {
             const verUsuarios = await DAO.getAll()
-            // res.render('productos.hbs',{verProductos})
             res.status(200).json(verUsuarios)
         } catch (error) {
             res.status(error.errorCode).send(error.message);
@@ -15,7 +14,8 @@ class UsuarioControllerRest{
     async postUsuarios (req, res) {
         try {
             // const {username, password, name, surname, address, phone,avatar} = req.body 
-            const usuario = await DAO.create({...req.body, admin:"usuario" }) /////cambiado agregado admin=0
+            /////cambiado agregado admin=0 - A FUTURO 
+            const usuario = await DAO.create({...req.body, admin:"usuario" }) 
             res.status(201).json(usuario)
         } catch (error) {
             console.log('error postUsuarios',error)
@@ -28,7 +28,6 @@ class UsuarioControllerRest{
             const id = req.params.id
             console.log('id', id)
             const usuario = await DAO.getById(id)
-            //  console.log('elemento', elemento)
             if(!usuario){return res.status(404).json({error: "usuario no encontrado"})}
             res.status(200).json(usuario)
         } catch (error) {

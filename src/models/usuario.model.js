@@ -14,16 +14,3 @@ const usuarioSchema = new mongoose.Schema({
 const Usuarios = mongoose.model ("usuarios", usuarioSchema)
 
 module.exports = Usuarios
-
-// const mongoose = require( "mongoose")
-
-// module.exports = mongoose.model('User', {
-//     username: String,
-//     password:String,
-//     name : String,
-//     address : String,
-//     age : Number,
-//     phone:Number,
-//     avatar: String 
-  
-// })

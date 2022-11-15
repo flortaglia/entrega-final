@@ -6,7 +6,6 @@ module.exports = function(passport){
     login(passport);
 	//Serializar y deserializar instancias de usuario
     passport.serializeUser((user, done)=> {
-       // console.log('serializing user: ',user);
         done(null, user);
     });
 

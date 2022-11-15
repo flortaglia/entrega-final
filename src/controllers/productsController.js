@@ -6,7 +6,8 @@ class ProductoController{
         try {
             const verProductos = await DAO.getAll()
             res.render('productos.hbs',{verProductos})
-            // res.status(200).json(verProductos)
+            //PARA JSON
+            // res.status(200).json(verProductos)   
         } catch (error) {
             res.status(error.errorCode).send(error.message); 
         }
@@ -17,6 +18,7 @@ class ProductoController{
             const verProductos = await DAO.getByCategory(category)
             if(!verProductos){return res.status(404).json({error: "Categoria de producto no encontrada"})}
             res.render('productos.hbs',{verProductos})
+            //PARA JSON
             // res.status(200).json(verProductosCategory)
         } catch (error) {
             res.status(error.errorCode).send(error.message);
@@ -40,13 +42,13 @@ class ProductoController{
             const id = req.params.id
             console.log('id getProductoId ', id)
             const elemento = await DAO.getById(id)
-            //  console.log('elemento', elemento)
             if(!elemento){return res.status(404).json({error: "Producto no encontrado"})}
-            
             res.render('productoById.hbs',{elemento})
+             //PARA JSON
             // res.status(200).json(elemento)
         } catch (error) {
             next(error)
+            //ANTES SIN EL EXPRESS ERROR HANDLING
             // res.status(error.errorCode).send(error.message); 
         }
     
@@ -78,19 +80,3 @@ class ProductoController{
     }
 }
 module.exports = ProductoController;
-
-
-// const getProductos = async (req, res) => {
-//     const verProductos = await ProductoDaoMongo.getAll()
-//     // const {username, name, surname,address, age, phone, avatar} = req.user
-//     // console.log('verProductos', verProductos)
-//     // res.json(verProductos)
-//     res.render('productos.hbs',{verProductos})
-// }
-
-// module.exports = {
-//     getProductos
-// }
-
-
-

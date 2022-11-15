@@ -14,11 +14,9 @@ class UsuarioController{
   //LOGIN
   async getLogin(req, res){
       if(req.isAuthenticated()){
-        // console.log('estoy logueadooooo')
         let user= req.user
         res.redirect('/productos')
       }else{
-        // console.log('usuario no logueado')
         res.sendFile(path.join(__dirname, ".././public/login.html")); //aca si podría un res.render
       }
       
@@ -41,7 +39,6 @@ class UsuarioController{
     res.sendFile(path.join(__dirname, ".././public/signup.html")); 
   }
   async postSignup(req, res){
-    // console.log('req- metodo post-login',req.body)
     let user= req.user
     main(`Nuevo Registro de ${req.user.name} ${req.user.surname} - ${req.user.username}`, 
     `<h1>Datos de Registro</h1>
@@ -73,70 +70,4 @@ class UsuarioController{
   }
 }
 module.exports = UsuarioController
-
-                ////////             OTROS                 ////////
-
-// const getUsers = async (req, res) => {
-//     const verUsers= await UsuarioDao.getAll()
-//     res.json(verUsers)
-// }
-
-// const postUser = async (req, res) => {
-//     const {username, password, nombre, direccion, edad, telefono,avatar} = req.body 
-//     const elemento = await UsuarioDao.newProduct(username, password, nombre, direccion, edad, telefono,avatar)
-//     res.json(elemento)
-// }
-//////// CON USERNAME //////////////// 
-// const getUserMail = async (req, res) => {
-//     const username = req.params.username
-//     console.log('username', username)
-//     const elemento = await UsuarioDao.getByUsername(username)
-//     console.log('elemento', elemento)
-//     if(!elemento){return res.status(404).json({error: "Usuario no encontrado"})}
-//     res.json(elemento)
-// }
-// const putUserMail = async (req, res) => {
-//     const {username, password, nombre, direccion, edad, telefono,avatar} = req.body
-//     const id = req.params.id
-//     const elemento = await UsuarioDao.getById(id)
-//     if(!elemento){return res.status(404).json({error: "Usuario no encontrado"})}
-//     const elementChanged = await UsuarioDao.update(id,username, password, nombre, direccion, edad, telefono,avatar)
-//     res.json(elementChanged)
-    
-// }
-// const deleteUserMail = async (req, res) => {
-//     const id = req.params.id
-//     if(!id){return res.json({ error: "El parámetro no es un número o el id no existe" })}
-//     await UsuarioDao.deleteById(id)
-//     res.json(await UsuarioDao.getAll())
-// }
-
-//////////////////////////////////////////////////////////////////////////////////////
-// const getUserId = async (req, res) => {
-//     const id = req.params.id
-//     console.log('id', id)
-//     const elemento = await UsuarioDao.getById(id)
-//     console.log('elemento', elemento)
-//     if(!elemento){return res.status(404).json({error: "Usuario no encontrado"})}
-//     res.json(elemento)
-// }
-// const putUser = async (req, res) => {
-//     const {username, password, nombre, direccion, edad, telefono,avatar} = req.body
-//     const id = req.params.id
-//     const elemento = await UsuarioDao.getById(id)
-//     if(!elemento){return res.status(404).json({error: "Usuario no encontrado"})}
-//     const elementChanged = await UsuarioDao.update(id,username, password, nombre, direccion, edad, telefono,avatar)
-//     res.json(elementChanged)
-    
-// }
-// const deleteUser = async (req, res) => {
-//     const id = req.params.id
-//     if(!id){return res.json({ error: "El parámetro no es un número o el id no existe" })}
-//     ////////HACER  más adelante agregar borrar usuario y carrito de usuario////////////////////!?!?!
-//     /////const usuario = await UsuarioDao.getById(id)
-//     /////CREAR    const carrito= await CarritoDao.getByUsername(usuario.username)
-//     //// await CarritoDao.deleteById(carrito._id.toString())
-//     await UsuarioDao.deleteById(id)
-//     res.json(await UsuarioDao.getAll())
-// }
 

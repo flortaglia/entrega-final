@@ -12,16 +12,3 @@ class ProductoDTO {
     }
 }
 module.exports = ProductoDTO;  
-
-
-// class ProductoDTO {
-//     constructor(title,description,code, price,thumbnail, timestamp, stock ){
-//         this.title= title
-//         this.description = description
-//         this.code = code
-//         this.price = price
-//         this.thumbnail = thumbnail
-//         this.timestamp = timestamp
-//         this.stock = stock
-//     }
-// }
